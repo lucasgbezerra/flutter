@@ -1,0 +1,92 @@
+DART
+void main() {
+  for (int i = 0; i < 5; i++) {
+    print('hello ${i + 1}');
+  }
+}
+-----------------------------
+Usa ; no fim da linha
+Case sencitive
+------------------------------
+Comentar: //
+------------------------------
+String nome = 'texto';
+// Aspas simples ou duplas
+----------------------------
+int, double, bool
+----------------------------
+String nome = 'Lucas'
+print("meu nome é $Lucas");
+//ou
+print("meu nome é"+Lucas);
+-----------------------------
+var tipo;
+tipo = 1;
+// tipo será um inteiro
+tipo = 'hahaha' // dará erro
+-----------------------------
+|| or lógico
+&& and lógico
+! not 
+------------------------------
+Condicional, Switch e Loops, padrão C
+-----------------------------------
+Função - Parametros opcionais
+
+void main(){
+	criarBotão("Botão Sair");
+}
+
+void criarBotao(String texto,{String cor, double largura})
+{
+	print(texto);
+	print(cor);
+	print(largura);
+}
+// Output: Botão sair \n null \n null
+-------------------------------------
+Função: Std parametros
+
+void main(){
+	criarBotão("Botão Sair", cor: "Cinza")
+}
+
+void criarBotao(String texto,{String cor, double largura})
+{
+	print(texto);
+	print(cor ?? "Preto");
+	print(largura ?? "10.0");
+}
+// Output: Botão sair \n Cinza \n 10.0
+-------------------------------------
+Função - função como parametro:
+void main(){
+	criarBotão("Botão Sair", btnCriado ,cor: "Cinza");
+}
+
+void btnCriado(){
+	print("Botão Criado!!");
+}
+
+void criarBotao(String texto,Function criadoFunc,{String cor, double largura}{
+	print(texto);
+	print(cor ?? "Preto");
+	print(largura ?? "10.0");
+	criadoFunc();
+}
+// Output: Botão sair \n Cinza \n 10.0 \n Botão Criado!!
+
+//Pode ser feita da seguinte maneira
+//Função anonima:
+
+void main(){
+	criarBotão("Botão Sair", (){print("Botão criado func anonima")} ,cor: "Cinza");
+}
+
+void criarBotao(String texto,Function criadoFunc,{String cor, double largura}{
+	print(texto);
+	print(cor ?? "Preto");
+	print(largura ?? "10.0");
+	criadoFunc();
+}
+// Output: Botão sair \n Cinza \n 10.0 \n Botão criado func anonima

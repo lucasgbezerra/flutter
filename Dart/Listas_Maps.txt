@@ -1,0 +1,56 @@
+//Listas - Coleções
+
+List<String> nomes = ["Lucas", "Neve", "Luana"];
+// cria uma lista de Strings
+
+print(nomes[0]); //Lucas
+nomes.add("Leo");
+nome.removeAt(2) // remove Luana
+
+//vários outros metodos buscados por TAB
+
+// É possivel fazer ainda lista de Objetos.
+class Pessoa{
+	String nome;
+	int idade;
+
+	Pessoa(this.nome, this.idade);
+}
+List<Pessoa> pessoas = List();
+
+pessoas.add(Pessoa('Luca',30));
+pessoas.add(Pessoa('Leo',20));
+
+for(Pessoa p in pessoas){
+	print(p.nome);
+}
+--------------------------------------
+//Map
+
+// 11   SP
+// 61   BSB
+// 62	GO
+//Uma especie de tabela de correlaçao
+
+Map<int, String> ddds = Map();
+ddds[11] = "SP";
+ddds[61] = "GO";
+
+//dynamic, deixa livre para mudar o tipo
+
+Map<String, dynamic> pessoa = Map():
+pessoa["nome"] = "Lucas";
+pessoa["idade"] = 20;
+pessoa["altura"] = 1.70;
+
+// Map com objetos;
+
+Map<String, InfoPessoa> pessoas = Map():
+pessoa["Lucas"] = InfoPessoa(20)";
+pessoa["Leo"] = InfoPessoa(30);
+
+// acessar Maps
+print(ddds.keys) // (11, 61)
+print(ddds.values) // (SP, GO)
+print(ddds) // (11: SP, 61: GO)
+//TAB para outras

@@ -1,0 +1,141 @@
+DART OO
+//Instanciando variavel
+class Pessoa{
+	String nome;
+	int idade
+	
+	void aniversario(){
+		idade++;
+	}
+}
+
+void main(){
+	Pessoa pessoa1 = Pessoa() // o new é opicional 
+	pessoa1.nome = "Lucas"
+	pessoa1.idade = 20
+}
+--------------------------------------
+//Construtor
+class Pessoa{
+	String nome;
+
+	Pessoa(this.nome, this.idade);
+
+	void aniversario(){
+		idade++;
+	}
+}
+
+void main(){
+	Pessoa pessoa2 = Pessoa('Lucas',20) // o new é opicional 
+	
+}
+---------------------------------------
+//Named constructor
+class Pessoa{
+	String nome;
+
+	Pessoa(this.nome, this.idade);
+	Pessoa.nascer(this.nome){
+		idade = 0;
+		print("Nasceu!!")
+	}
+
+	void aniversario(){
+		idade++;
+	}
+}
+
+void main(){
+	Pessoa pessoa2 = Pessoa('Lucas',20) // o new é opicional
+	Pessoa nenem = Pessoa.nascer("Neve")	
+}
+----------------------------------------
+//_ na frente indicam privacidade, (getters, setters)
+
+class Pessoa{
+	String nome;
+	int _idade;
+
+	Pessoa(this.nome, this.idade);
+	Pessoa.nascer(this.nome){
+		idade = 0;
+		print("Nasceu!!");
+	}
+	
+	int get idade => _idade //forma de se fazer o get
+
+	void aniversario(){
+		idade++;
+	}
+}
+----------------------------------------
+// Herança:
+class Animal{
+	String nome;
+	double peso;
+	
+	Animal(this.nome, this.peso);
+
+	void fazSom(){
+		print("$nome faz som!");
+	}
+	void comer(){
+		print("$nome comeu!");
+	}
+}
+class Cachorro extends Animal{
+	int fofura;
+	
+	Cachorro(String nome, double peso, this.fofura) : super(nome, peso);//chama o construtor da classe PAI 
+	void brincar(){
+		fofura+=10;
+	print("Fofura do $nome aumetou para $fofura")	
+	}
+}
+class Gato extends Animal{
+	
+	Gato(String nome, double peso) : super(nome, peso);//chama o construtor da classe PAI 
+	void estaAmigavel(){
+		return true;	
+	}
+}
+void main(){
+	Cachorro dog = Cachorro('Neve', 10, 100);
+	Gato cat = Gato('Neve', 5);
+	
+	dog.fazerSom()
+	print("Está amigavél? ${cat.estaAmigavel()}")
+}
+-------------------------------------
+// Override
+@Override
+void fazSom(){
+	print("$nome faz auu!"); //Sobreescreve o método da classe Pai
+}
+--------------------------------------
+//toString método da classe pai das classes que permite: 
+	@Override
+	void toString(){
+		return "Cachorro | Nome: $nome, Peso: $peso, Fofura: $fofura"
+	}
+// ao print(cachorro) terá a saida das informações
+
+--------------------------------------
+//modificadores Static, final, const
+class Valores{
+	static int vezesClicado
+}
+void main(){
+	Valores.vezesClicado =2;
+
+	final Pessoa pessoa = Pessoa() // final, uma vez incializado não pode mais ser modificado -> tempo de compilação
+	cons num = 3 //Const, congela o num, fica imutavel, e é substituido por seu valor em tempo de execução
+}
+
+-------------------------------------
+//Classes abstratas
+abstract class Animal{
+	//...
+}
+//Obriga que todas as classes filhas tenham os métodos declarados.
