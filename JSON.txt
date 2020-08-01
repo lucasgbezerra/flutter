@@ -1,0 +1,7 @@
+JSON (JavaScript Object Notation - Notação de Objetos JavaScript) é uma formatação leve de troca de dados.
+ Para seres humanos, é fácil de ler e escrever. Para máquinas, é fácil de interpretar e gerar.
+JSON está constituído em duas estruturas:
+
+    Uma coleção de pares nome/valor. Em várias linguagens, isto é caracterizado como um object, record, struct, dicionário, hash table, keyed list, ou arrays associativas.
+    Uma lista ordenada de valores. Na maioria das linguagens, isto é caracterizado como uma array, vetor, lista ou sequência.
+
