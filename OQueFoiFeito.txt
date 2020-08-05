@@ -1,3 +1,16 @@
 Buscador de gifs:
 - Código dividido em arquivos
-
+Agenda de Contatos:
+- armazenamento permanente de dados(SQFLITE);
+- Como criar, editar, atualizar, excluir dados no DB sqlite;
+- SINGLETON;
+- Card;
+- Circle image;
+- Will pop scope;
+- Button sheet;
+- Alert Dialog;
+- Navigator;
+- Pop of main on Bottom;
+- Image picker
+- Url launcher
+- focus
