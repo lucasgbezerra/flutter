@@ -1,0 +1,3 @@
+Buscador de gifs:
+- Código dividido em arquivos
+
