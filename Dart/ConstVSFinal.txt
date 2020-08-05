@@ -1,0 +1,27 @@
+CONST: DEFINE COMO IGUAL A TODOS OS OBJETOS INSTANCIADOS, VALORES CONHECIDOS
+
+// const dentro de uma classe, deve estar acompanhado de static
+
+Um exemplo que uso em aula. Imagine que tu queira que todos os cachorros sejam da cor preta:
+
+static const Color color = Colors.black;
+
+Agora, todos seus cachorros terão a cor preta se usarem essa constante.
+
+FINAL: CADA OBJETO TEM A SUA, É DEFINIDO UMA VEZ E DEPOIS NÃO PODE SER ALTERADO
+
+Porém image agora que a cor de um cachorro não muda ao longo do seu tempo de vida (criação até a morte), porém os cachorros podem ter cores diferentes. Nesse caso tu usaria final.
+
+final Color color;
+Cachorro(this.color);
+
+Sendo assim, a cor pode ser atribuída na criação do objeto e não poderá ser alterada até sua destruição.
+
+Nota sobre o static: use static quando fizer sentido. Se um campo pertence à classe e não à uma instancia, então esse é o lugar do uso de static.
+
+**final is additionally suited for more occasions while const can be used only for top-level, static or local variables. That means no const instance fields.**
+
+** CONST IMUTAVEL, FINAL NÃO
+https://forum.flutterando.com.br/d/460-const-x-final/6
+
+https://resocoder.com/2020/01/06/dart-const-tutorial-all-you-need-to-know-const-expressions-canonical-instances-and-more/
