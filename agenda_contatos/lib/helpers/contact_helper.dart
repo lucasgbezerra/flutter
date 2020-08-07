@@ -20,11 +20,11 @@ class ContactHelper{ //Terá apenas um objeto desta classe, por isso será utili
   Database _db;
 
   Future<Database> get db async{
-    if(db !=null){
-      return db;
+    if(_db != null){
+      return _db;
     }else{
       _db = await initDb();
-      return db;
+      return _db;
       }
   }
 
@@ -59,12 +59,12 @@ class ContactHelper{ //Terá apenas um objeto desta classe, por isso será utili
     return await dbContact.delete(contactTable, where: "$idColumn = ?", whereArgs: [id]);
   }
 
-  updateContact(Contact contact) async{// Update do contato
+  Future<int> updateContact(Contact contact) async{// Update do contato
     Database dbContact = await db;
     return await dbContact.update(contactTable, contact.toMap(), //pega a instancia do contato editado, e passa para Map
         where: "$idColumn = ?", whereArgs: [contact.id]);
   }
-  Future<List> getAllContatc() async{ //pegar todos os contatos
+  Future<List> getAllContacts() async{ //pegar todos os contatos
     Database dbContact = await db;
     List listMap = await dbContact.rawQuery("SELECT * FROM $contactTable"); // retorna uma lista de "linhas"
     List<Contact> listContacts = List();
@@ -74,7 +74,7 @@ class ContactHelper{ //Terá apenas um objeto desta classe, por isso será utili
     }
     return listContacts;
   }
-  Future<int> getNumberContacs() async{//pega o número de contatos(dados/linhas) no DB
+  Future<int> getNumberContacts() async{//pega o número de contatos(dados/linhas) no DB
     Database dbContact = await db;
 
     return Sqflite.firstIntValue(await dbContact.rawQuery("SELECT COUNT(*) FROM $contactTable"));
@@ -91,6 +91,8 @@ class Contact{
   String email;
   String phone;
   String img;//como não é possivel armazenar a imagem no sqlite, se armazena o path.
+
+  Contact();
 
   Contact.fromMap(Map map){
     id = map[idColumn];
