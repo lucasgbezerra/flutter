@@ -4,8 +4,10 @@ Agenda de Contatos:
 - armazenamento permanente de dados(SQFLITE);
 - Como criar, editar, atualizar, excluir dados no DB sqlite;
 - SINGLETON;
-- Card;
-- Circle image;
+- Card: cartas "elevadas";
+- Circle image: Imagem redonda;
+- Movimento entre paginas, passando informações;
+	Navigator funciona com a ideia de empilhamento.
 - Will pop scope;
 - Button sheet;
 - Alert Dialog;
