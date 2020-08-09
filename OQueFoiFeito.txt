@@ -16,3 +16,12 @@ Agenda de Contatos:
 - Image picker
 - Url launcher
 - focus
+---------------
+Chat:
+- Image picker
+- Firebase (Database,Authentication)
+	- firebase storage
+	- google sign in
+	- firebase auth
+	- cloud firestore
+
