@@ -24,4 +24,37 @@ Chat:
 	- google sign in
 	- firebase auth
 	- cloud firestore
+----------------------------
+Loja Virtual:
+- Navigation drawer
+- barra flutuante
+- apontando para o maps
+- font_awesome_flutter: ^8.8.1
+	- pacotes de icones
+- flutter_staggered_grid_view: ^0.3.2
+	- suporta mutiplas colunas e multiplas linhas, criando um grid view complexo
+- cloud_firestore: ^0.13.7
+	- API para usar o Cloud Firestore API.
+- firebase_analytics: ^5.0.16
+	- API para usar o Google Analytics for Firebase API.
+- firebase_messaging: ^6.0.16
+	- API para usar o  Firebase Cloud Messaging (FCM) API.
+	- receber e processar push notifications
+- carousel_pro: ^1.0.0
+	- 3 pontinhos para arrasta imagem
+- transparent_image: ^1.0.0
+	- imagem aparece suavemente
+- scoped_model: ^1.0.1
+	- um conjunto de utilidades que facilita a passagem de um modelo de dados de um widget pai
+	- para seus descendentes
+- path_provider: ^1.6.11
+	- plugin para encontrar locais comuns do sistema de arquivos
+- firebase_auth: ^0.16.1
+	- autenticação por meio do autentication do firebase
+- url_launcher: ^5.5.0
+	- plugin para lançar url na plataforma mobile
+
+
+
+
 
