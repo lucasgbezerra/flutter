@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/screens/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,10 +13,10 @@ class MyApp extends StatelessWidget {
       title: 'Gabriel\'s',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        primaryColor: Color.fromARGB(255, 4, 125, 141)
+        primaryColor: Color(0xff0000EE)
       ),
       debugShowCheckedModeBanner: false,
-      home: Container(),
+      home: HomeScreen(),
     );
   }
 }
