@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/tabs/categories_tap.dart';
 import 'package:loja_virtual/tabs/home_tab.dart';
 import 'package:loja_virtual/widgets/custom_drawer.dart';
 
@@ -17,6 +18,15 @@ class HomeScreen extends StatelessWidget {
          drawer: CustomDrawer(_pageController),
          body: HomeTab(),//paginainicial
        ),
+        Scaffold(
+          appBar: AppBar(
+            backgroundColor: Color(0xff00C9FF),
+            title: Text('Products', style: TextStyle(fontSize: 20.0,),),
+            centerTitle: true,
+          ),
+          drawer: CustomDrawer(_pageController),
+          body: CategoriesTap(),
+        )
       ],
     );
   }
