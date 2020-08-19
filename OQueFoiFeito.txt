@@ -53,7 +53,10 @@ Loja Virtual:
 	- autenticação por meio do autentication do firebase
 - url_launcher: ^5.5.0
 	- plugin para lançar url na plataforma mobile
-
+-<ALGUMA COISA> evita erros
+- QuerySnapshot != DocumentSnapshot
+	- Query: fotografia de uma coleção, possui o documento dentro
+	- Document: fotografia de um documento
 
 
 
