@@ -57,7 +57,7 @@ Loja Virtual:
 - QuerySnapshot != DocumentSnapshot
 	- Query: fotografia de uma coleção, possui o documento dentro
 	- Document: fotografia de um documento
-
-
+- InkWell semelhante ao GestureDetecture, InkWell tem uma animação de toque
+-Carousel: plugin para imagens em listas, passando pro lado
 
 
