@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Gabriel\'s',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        primaryColor: Color(0xff0000EE)
+        primaryColor: Color(0xff00C9FF)
       ),
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
