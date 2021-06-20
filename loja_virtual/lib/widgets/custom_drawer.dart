@@ -1,87 +1,73 @@
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/tiles/drawer_tile.dart';
 
+// Widget de tela lateral
 class CustomDrawer extends StatelessWidget {
-  final PageController pageController;
+  PageController pageController;
 
-  CustomDrawer(this.pageController); //Construtor de um controlador para mudar de paginas pelo drawer
-
-  Widget _buildDraweBackground() => Container( //Criando degradê por tras das imagens
-    decoration: BoxDecoration(
-        gradient: LinearGradient(//degrade linear
-            colors: [
-              Color(0xff00C9FF),//cores
-              Colors.white,
-            ],
-            begin: Alignment.topCenter,//inicio e fim
-            end: Alignment.bottomCenter
-        )
-    ),
-  );
-
+  CustomDrawer(this.pageController);
   @override
   Widget build(BuildContext context) {
+
+    //Função anonima cria um degradê na tela
+    Widget _buildDrawerBack() => Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [
+          Color.fromARGB(255, 211, 118, 130),
+          Colors.white
+        ],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight
+        )
+      ),
+    );
+
     return Drawer(
       child: Stack(
         children: [
-          _buildDraweBackground(),
-          ListView( //Lista dos componentes da drawer
-            padding: EdgeInsets.fromLTRB(30.0, 15.0, 0.0, 0.0),
+          _buildDrawerBack(),
+          ListView(
+            padding: EdgeInsets.only(left: 32.0, top: 16.0),
             children: [
               Container(
+                margin: EdgeInsets.only(bottom: 5.0), //Espaçamento por fora
+                padding: EdgeInsets.fromLTRB(0.0, 16.0, 16.0, 8.0),
                 height: 170.0,
-                margin: EdgeInsets.only(bottom: 8.0),
-                padding: EdgeInsets.fromLTRB(0.0, 15.0, 15.0, 8.0),
-                child: Stack( //Permite posicionar os componentes mais livremente
+                child: Stack(
                   children: [
-                    Positioned( //define a posição de um children de um stack
-                      top: 8.0, left: 0.0,
-                        child: Text('Gabriel\'s', style: TextStyle(
-                          fontSize: 35.0, fontWeight: FontWeight.bold,
-                          color: Colors.white
-                        ),
-                        )
+                    Positioned(
+                      top: 8.0,
+                      left: 0.0,
+                      child: Text("Flutter's\nStore", style: TextStyle(
+                      fontSize: 34.0, fontWeight: FontWeight.bold),)
                     ),
-                    Positioned( //define a posição de um children de um stack
-                        bottom: 0.0, left: 0.0,
-                        child: Column( // Botão para cadastro
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Olá,', style: TextStyle(
-                                fontSize: 18.0, fontWeight: FontWeight.bold,
-                                color: Colors.black
-                            ),
-                            ),
-                           GestureDetector(
-                             child: Row(
-                               children: [
-                                 Text('Entre ou cadastre-se', style: TextStyle(
-                                     fontSize: 16.0, fontWeight: FontWeight.bold,
-                                     color: Theme.of(context).primaryColor
-                                 ),
-                                 ),
-                                 Icon(Icons.arrow_forward_ios,color: Theme.of(context).primaryColor,size: 16.0,)
-                               ],
-                             ),
-                             onTap: (){
-
-                             },
-                           )
-                          ],
-                        )
-                    )
-                  ],
+                    Positioned(
+                      bottom: 0.0,
+                      left: 0.0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Olá,", style: TextStyle(fontSize: 18.0, 
+                          fontWeight: FontWeight.bold)),
+                          GestureDetector( // Texto clicavél
+                            child: Text("Entre ou cadastre-se >", style: TextStyle(fontSize: 16.0, 
+                            fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
+                            onTap: (){
+                            },
+                          )],
+                      )
+                    )],
                 ),
               ),
-              Divider(), //Linha dividindo o conteudo
-              DrawerTile(Icons.home, "Ínicio", pageController, 0), //parametros para construir o tile
+              //Divide a list view com um espaço
+              Divider(),
+              DrawerTile(Icons.home, "Home", pageController, 0),
               DrawerTile(Icons.list, "Produtos", pageController, 1),
-              DrawerTile(Icons.location_on, 'Lojas', pageController, 2),
-              DrawerTile(Icons.playlist_add_check, "Meus pedidos", pageController, 3)
+              DrawerTile(Icons.location_on, "Lojas", pageController, 2),
+              DrawerTile(Icons.playlist_add_check, "Meus Pedidos", pageController, 3),
             ],
           )
-        ],
-      ),
+        ],),
     );
   }
 }
