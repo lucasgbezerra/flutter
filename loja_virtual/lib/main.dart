@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/screens/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:loja_virtual/screens/login_screen.dart';
 
 void main() async{
   //Inicializar a conexão com o firebase
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       // Retirar a flag de debug
       debugShowCheckedModeBanner: false ,
-      home: HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }
