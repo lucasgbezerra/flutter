@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       // Retirar a flag de debug
       debugShowCheckedModeBanner: false ,
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }

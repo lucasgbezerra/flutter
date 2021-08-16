@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/screens/login_screen.dart';
 import 'package:loja_virtual/tiles/drawer_tile.dart';
 
 // Widget de tela lateral
@@ -53,6 +54,7 @@ class CustomDrawer extends StatelessWidget {
                             child: Text("Entre ou cadastre-se >", style: TextStyle(fontSize: 16.0, 
                             fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
                             onTap: (){
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LoginScreen()));
                             },
                           )],
                       )

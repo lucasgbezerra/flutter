@@ -1,33 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:loja_virtual/screens/signup_screen.dart';
 import 'package:loja_virtual/widgets/password_field_widget.dart';
 
-class LoginScreen extends StatelessWidget {
+class SignupScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
-  LoginScreen({Key? key}) : super(key: key);
+  SignupScreen({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Entrar"),
+        title: Text("Cadastrar"),
         centerTitle: true,
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>SignupScreen()));
-            },
-            child: Text(
-              "CRIAR CONTA",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 15.0,
-              ),
-            ),
-            style:
-                TextButton.styleFrom(textStyle: TextStyle(color: Colors.white)),
-          ),
-        ],
       ),
       body: Form(
         key: _formKey,
@@ -37,29 +20,31 @@ class LoginScreen extends StatelessWidget {
             children: [
               TextFormField(
                 validator: (value){
+                  if(value!.isEmpty)
+                    return "Nome inválido";
+                },
+                decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.person), hintText: "Nome"),
+              ),
+              SizedBox(
+                height: 16.0,
+              ),
+              TextFormField(
+                validator: (value){
                   if(value!.isEmpty || !value.contains("@"))
                     return "E-mail inválido!";
                 },
                 decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.email), hintText: "Email"),
+                    prefixIcon: Icon(Icons.email), hintText: "E-mail"),
               ),
               SizedBox(
                 height: 16.0,
               ),
               PasswordFieldWidget(),
-              Align(
-                heightFactor: 2,
-                alignment: Alignment.centerRight,
-                child: GestureDetector(
-                  onTap: () {
-                    
-                  },
-                  child: Text(
-                    "Esqueci a senha",
-                    style: TextStyle(fontSize: 14.0),
-                  ),
-                ),
+              SizedBox(
+                height: 16.0,
               ),
+              PasswordFieldWidget(hint: "Confirmar Senha",),
               SizedBox(
                 height: 16.0,
               ),
@@ -71,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                     if(_formKey.currentState!.validate())
                       print("0k");
                   },
-                  child: Text("Entrar", style: TextStyle(color: Colors.white),),
+                  child: Text("Criar", style: TextStyle(color: Colors.white),),
                   style: TextButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
