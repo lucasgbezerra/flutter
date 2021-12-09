@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/models/user_model.dart';
 import 'package:loja_virtual/screens/signup_screen.dart';
 import 'package:loja_virtual/widgets/password_field_widget.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class LoginScreen extends StatelessWidget {
+  final _passwordController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
   LoginScreen({Key? key}) : super(key: key);
 
@@ -12,6 +16,7 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Entrar"),
         centerTitle: true,
+        backgroundColor: Theme.of(context).primaryColor,
         actions: [
           TextButton(
             onPressed: () {
@@ -29,7 +34,10 @@ class LoginScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Form(
+      body: ScopedModelDescendant<UserModel>(builder: (context,  child ,model){
+        if(model.isLoading)
+          return Center(child: CircularProgressIndicator());
+        return Form(
         key: _formKey,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -46,7 +54,7 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 height: 16.0,
               ),
-              PasswordFieldWidget(),
+              PasswordFieldWidget(controller: _passwordController, validator: (value) => value!.isEmpty ? "Campo vazio" : null,),
               Align(
                 heightFactor: 2,
                 alignment: Alignment.centerRight,
@@ -80,7 +88,8 @@ class LoginScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      );
+      })
     );
   }
 }

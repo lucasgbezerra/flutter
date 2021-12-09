@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/models/user_model.dart';
 import 'package:loja_virtual/screens/login_screen.dart';
 import 'package:loja_virtual/tiles/drawer_tile.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 // Widget de tela lateral
 class CustomDrawer extends StatelessWidget {
@@ -45,19 +47,26 @@ class CustomDrawer extends StatelessWidget {
                     Positioned(
                       bottom: 0.0,
                       left: 0.0,
-                      child: Column(
+                      child: ScopedModelDescendant<UserModel>(builder: (context, child, model){
+                        if(model.isLoading)
+                          return Center(child: CircularProgressIndicator(),);
+                        return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Olá,", style: TextStyle(fontSize: 18.0, 
+                          Text("Olá, ${model.isLoggedIn() ? model.userData["name"] : ""}", style: TextStyle(fontSize: 18.0, 
                           fontWeight: FontWeight.bold)),
                           GestureDetector( // Texto clicavél
-                            child: Text("Entre ou cadastre-se >", style: TextStyle(fontSize: 16.0, 
+                            child: Text( model.isLoggedIn() ? "Sair" : "Entre ou cadastre-se >", style: TextStyle(fontSize: 16.0, 
                             fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
                             onTap: (){
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LoginScreen()));
+                              if(model.isLoggedIn())
+                                model.signOut();
+                              else
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LoginScreen()));
                             },
                           )],
-                      )
+                      );
+                      })
                     )],
                 ),
               ),

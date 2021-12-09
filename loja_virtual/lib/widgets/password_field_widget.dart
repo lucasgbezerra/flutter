@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 
 class PasswordFieldWidget extends StatefulWidget {
   final String? hint;
-  const PasswordFieldWidget({
-    Key? key,
-    this.hint,
-  }) : super(key: key);
+  TextEditingController controller;
+  final String? Function(String?)? validator;
+
+  PasswordFieldWidget(
+      {Key? key,
+      this.hint,
+      required this.controller,
+      required this.validator})
+      : super(key: key);
 
   @override
   _PasswordFieldWidgetState createState() => _PasswordFieldWidgetState();
@@ -17,9 +22,8 @@ class _PasswordFieldWidgetState extends State<PasswordFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-        validator: (value) {
-          if (value!.length < 7) return "A senha deve ter no mínimo 7 dígitos";
-        },
+        controller: widget.controller,
+        validator: widget.validator,
         decoration: InputDecoration(
             prefixIcon: Icon(Icons.lock),
             suffixIcon: IconButton(
