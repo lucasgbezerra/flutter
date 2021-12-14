@@ -117,13 +117,6 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _onFail() {
-    // _scaffoldKey.currentState?.showSnackBar(
-    // SnackBar(
-    //   content: Text("Não foi possível criar o usuário!"),
-    //   duration: Duration(seconds: 2),
-    //   backgroundColor: Colors.red,
-    // ),
-    // );
     ScaffoldMessenger.maybeOf(context)!.showSnackBar(
       SnackBar(
         content: Text("Não foi possível criar o usuário!"),
@@ -134,7 +127,6 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _onSuccess() {
-    // _scaffoldKey.currentState?.showSnackBar(
     ScaffoldMessenger.maybeOf(context)!.showSnackBar(
       SnackBar(
         content: Text("Usuário criado com sucesso"),

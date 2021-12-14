@@ -12,6 +12,13 @@ class UserModel extends Model {
 
   Map<String, dynamic> userData = Map();
 
+  @override
+  void addListener(VoidCallback listener) {
+    super.addListener(listener);
+
+    _loadCurrentUser();
+  }
+  
   void signUp(
       {required Map<String, dynamic> userData,
       required String password,
@@ -20,11 +27,12 @@ class UserModel extends Model {
     isLoading = true;
     notifyListeners();
 
-    _auth.createUserWithEmailAndPassword(
+    _auth
+        .createUserWithEmailAndPassword(
       email: userData["email"],
       password: password,
-    ).then((user) async {
-      print("Aqui");
+    )
+        .then((user) async {
       firebaseUser = user.user!;
       await _saveUserData(userData);
 
@@ -38,7 +46,26 @@ class UserModel extends Model {
     });
   }
 
-  void signIn() async {}
+  void signIn(
+      {required String email,
+      required String password,
+      required VoidCallback onSuccess,
+      required VoidCallback onFail}) async {
+    _auth
+        .signInWithEmailAndPassword(email: email, password: password)
+        .then((user) async{
+      firebaseUser = user.user!;
+
+      await _loadCurrentUser();
+      onSuccess();
+      isLoading = false;
+      notifyListeners();
+    }).catchError((e) {
+      onFail();
+      isLoading = false;
+      notifyListeners();
+    });
+  }
 
   void signOut() async {
     await _auth.signOut();
@@ -62,5 +89,18 @@ class UserModel extends Model {
         .collection("users")
         .doc(firebaseUser!.uid)
         .set(userData);
+  }
+
+  Future<void> _loadCurrentUser() async {
+    if (firebaseUser == null) firebaseUser = _auth.currentUser;
+    if (firebaseUser != null) {
+      if (userData["name"] == null){
+          DocumentSnapshot docUser = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(firebaseUser!.uid)
+          .get();
+          userData = docUser.data() as Map<String, dynamic>;
+      }
+    }
   }
 }
