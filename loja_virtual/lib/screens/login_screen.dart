@@ -72,7 +72,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     heightFactor: 2,
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        if (_emailController.text.isEmpty){
+                          ScaffoldMessenger.maybeOf(context)!.showSnackBar(
+                            SnackBar(
+                              content: Text("O campo não pode estar vazio, adicione um email para recuperação"),
+                              duration: Duration(seconds: 2),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        }else{
+                          model.recoverPassword(email: _emailController.text);
+                           ScaffoldMessenger.maybeOf(context)!.showSnackBar(
+                            SnackBar(
+                              content: Text("Email enviado, confira seu email!"),
+                              duration: Duration(seconds: 2),
+                              backgroundColor: Theme.of(context).primaryColor,
+                            ),
+                          );
+                        }
+                      },
                       child: Text(
                         "Esqueci a senha",
                         style: TextStyle(fontSize: 14.0),

@@ -18,7 +18,7 @@ class UserModel extends Model {
 
     _loadCurrentUser();
   }
-  
+
   void signUp(
       {required Map<String, dynamic> userData,
       required String password,
@@ -75,7 +75,9 @@ class UserModel extends Model {
     notifyListeners();
   }
 
-  void recoverPassword() {}
+  void recoverPassword({required email}) {
+    _auth.sendPasswordResetEmail(email: email);
+  }
 
   // Verifica se está logado
   bool isLoggedIn() {
