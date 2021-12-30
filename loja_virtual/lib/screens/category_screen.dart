@@ -17,6 +17,7 @@ class CategoryScreen extends StatelessWidget {
           appBar: AppBar(
             title: Text(snapshot.get('title')),
             centerTitle: true,
+            backgroundColor: Color.fromARGB(255, 211, 118, 130),
             bottom: TabBar(
               indicatorColor: Colors.white,
               tabs: [
@@ -53,21 +54,21 @@ class CategoryScreen extends StatelessWidget {
                             childAspectRatio: 0.65),
                         itemCount: snapshot.data!.docs.length,
                         itemBuilder: (context, index) {
-                          return ProductTile(
-                              "grid",
-                              ProductData.fromDocument(
-                                  snapshot.data!.docs[index]));
+                          ProductData data = ProductData.fromDocument(
+                              snapshot.data!.docs[index]);
+                          data.category = this.snapshot.id;
+                          return ProductTile("grid", data);
                         }),
                     ListView.builder(
-                        padding: EdgeInsets.all(4),
-                        itemCount: snapshot.data!.docs.length,
-                        itemBuilder: (context, index) {
-                          return ProductTile(
-                              "list",
-                              ProductData.fromDocument(
-                                  snapshot.data!.docs[index]));
-                        },
-                      )
+                      padding: EdgeInsets.all(4),
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        ProductData data = ProductData.fromDocument(
+                            snapshot.data!.docs[index]);
+                        data.category = this.snapshot.id;
+                        return ProductTile("list", data);
+                      },
+                    )
                   ]);
               })),
     );

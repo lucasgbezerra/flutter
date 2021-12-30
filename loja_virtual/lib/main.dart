@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
               child: MaterialApp(
                 title: 'Flutter loja',
                 theme: ThemeData(
-                    primarySwatch: Colors.blue,
+                    primarySwatch: Colors.pink,
                     primaryColor: Color.fromARGB(255, 4, 125, 141)),
                 // Retirar a flag de debug
                 debugShowCheckedModeBanner: false,

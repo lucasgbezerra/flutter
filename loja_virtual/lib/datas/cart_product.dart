@@ -1,47 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 import 'package:loja_virtual/datas/product_data.dart';
 
 class CartProduct {
-  final String cid;
-  final String pid;
+  String? cid;
+  String? pid;
 
-  final String category;
-  final String size;
+  String? category;
+  String? size;
 
-  final int quantity;
+  int? quantity;
 
-  final ProductData? productData;
+  ProductData? productData;
 
+  
   CartProduct({
-    required this.cid,
-    required this.pid,
-    required this.category,
-    required this.size,
-    required this.quantity,
+    this.pid,
+    this.category,
+    this.size,
+    this.cid,
+    this.quantity,
     this.productData,
   });
 
-  CartProduct copyWith({
-    String? cid,
-    String? pid,
-    String? category,
-    String? size,
-    int? quantity,
-    ProductData? productData,
-  }) {
-    return CartProduct(
-      cid: cid ?? this.cid,
-      pid: pid ?? this.pid,
-      category: category ?? this.category,
-      size: size ?? this.size,
-      quantity: quantity ?? this.quantity,
-      productData: productData ?? this.productData,
-    );
-  }
 
-  CartProduct.fromDocument(DocumentSnapshot document, this.cid, this.pid,
-      this.category, this.size, this.quantity, this.productData) {
+  CartProduct.fromDocument(DocumentSnapshot document) {
     CartProduct(
       cid: document.id,
       category: document.get('category'),
@@ -57,8 +41,9 @@ class CartProduct {
       "pid": pid,
       "quantity": quantity,
       "size": size,
-      "product": productData!.toResumeMap(),
+      // "product": productData!.toResumeMap(),
     };
 
   }
+
 }
