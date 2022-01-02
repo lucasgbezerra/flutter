@@ -3,6 +3,8 @@ import 'package:loja_virtual/models/cart_model.dart';
 import 'package:loja_virtual/models/user_model.dart';
 import 'package:loja_virtual/screens/login_screen.dart';
 import 'package:loja_virtual/tiles/cart_product_tile.dart';
+import 'package:loja_virtual/widgets/discount_card.dart';
+import 'package:loja_virtual/widgets/ship_cart.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class CartScreen extends StatelessWidget {
@@ -73,7 +75,7 @@ class CartScreen extends StatelessWidget {
                 ],
               ),
             );
-          } else if (model.products == null || model.products.length == 0) {
+          } else if ( model.products.length == 0) {
             // Usuário não tem nenhum produto no carrinho
             return Center(
               child: Text(
@@ -85,11 +87,13 @@ class CartScreen extends StatelessWidget {
           } else {
             // Usuario logado e com produtos no carrinho
             return ListView(
-              children: [
+              children: <Widget>[
                 Column(
                     children: model.products.map((product) {
                   return CartProductTile(cartProduct: product);
                 }).toList()),
+                DiscountCard(),
+                ShipCard()
               ],
             );
           }

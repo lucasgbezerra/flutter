@@ -7,13 +7,13 @@ import 'package:loja_virtual/models/cart_model.dart';
 class CartProductTile extends StatelessWidget {
   final CartProduct cartProduct;
 
-  const CartProductTile({Key? key, required this.cartProduct})
+  CartProductTile({Key? key, required this.cartProduct})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+   
     Widget _buildContent() {
-      print("CID ${cartProduct.cid}");
       return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -90,7 +90,6 @@ class CartProductTile extends StatelessWidget {
                     .get(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    print("TESTE: ${cartProduct.category}");
                     cartProduct.productData =
                         ProductData.fromDocument(snapshot.data!);
                     return _buildContent();

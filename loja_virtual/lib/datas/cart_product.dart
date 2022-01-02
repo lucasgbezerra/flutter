@@ -15,24 +15,16 @@ class CartProduct {
   ProductData? productData;
 
   
-  CartProduct({
-    this.pid,
-    this.category,
-    this.size,
-    this.cid,
-    this.quantity,
-    this.productData,
-  });
+ 
 
+  CartProduct();
 
   CartProduct.fromDocument(DocumentSnapshot document) {
-    CartProduct(
-      cid: document.id,
-      category: document.get('category'),
-      size: document.get('size'),
-      quantity: document.get('quantity'),
-      pid: document.get('pid'),
-    );
+      cid = document.id;
+      category= document.get("category");
+      pid = document.get('pid');
+      quantity = document.get('quantity');
+      size = document.get('size');
   }
 
   Map<String, dynamic> toMap(){
