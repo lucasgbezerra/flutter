@@ -71,20 +71,40 @@ class CartModel extends Model {
     notifyListeners();
   }
 
+  void updatePrices(){
+    notifyListeners();
+  }
+
   void setCoupon(String couponCode, int percent){
     this.couponCode = couponCode;
     this.discountPercentage = percent;
   }
 
+  double getProductsPrice(){
+    double price = 0.0;
+    for(CartProduct c in products){
+      if(c.productData != null){
+        price += (c.quantity! * c.productData!.price);
+      }
+    }
+    return price;
+  }
+
+  double getDiscount(){
+    return getProductsPrice() * (- discountPercentage / 100);
+  }
+
+  double getShipPrice(){
+    //Add calculo de frete com CEP
+    return 25.99;
+  }
   void _loadCartItems() async{
     QuerySnapshot query =  await FirebaseFirestore.instance
         .collection('users')
         .doc(user.firebaseUser!.uid)
         .collection('cart').get();
-    print(query.size);
     products = query.docs.map((doc) => CartProduct.fromDocument(doc)).toList();
     notifyListeners();
-    print("CArregou");
 
   }
 }
