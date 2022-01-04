@@ -69,7 +69,7 @@ class CartPrice extends StatelessWidget {
                 SizedBox(height: 12),
                 ElevatedButton(
                     child: Text("Finalizar Pedido"),
-                    onPressed: () {},
+                    onPressed: onPressed,
                     style: ElevatedButton.styleFrom(
                       primary: Theme.of(context).primaryColor,
                       minimumSize: Size.fromHeight(40)
