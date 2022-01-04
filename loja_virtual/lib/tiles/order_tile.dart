@@ -56,8 +56,6 @@ class OrderTile extends StatelessWidget {
                           _buildCircle("2", "Transporte", status, 2),
                           Expanded(child: Divider(color: Colors.black)),
                           _buildCircle("3", "Entrega", status, 3),
-
-                          // Container(height: 1,width: 40 , color: Colors.grey,),
                         ],
                       ),
                     ),
