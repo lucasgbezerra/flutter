@@ -117,16 +117,17 @@ class CartModel extends Model {
 
     double discount = getDiscount();
     double shipPrice = getShipPrice();
-    double productsPrice = getProductsPrice();
+    // double productsPrice = getProductsPrice();
+    double totalPrice = getProductsPrice() + getShipPrice() + getDiscount();
 
     DocumentReference refOrder =
         await FirebaseFirestore.instance.collection('orders').add({
       'clientId': user.firebaseUser!.uid,
-      'products': products.map((CartProduct) => CartProduct.toMap()).toList(),
-      'productsPrice': productsPrice,
+      'products': products.map((cartProduct) => cartProduct.toMap()).toList(),
+      'totalPrice': totalPrice,
       'shipPrice': shipPrice,
       'discount': discount,
-      'statue': 1,
+      'status': 1,
     });
 
     await FirebaseFirestore.instance

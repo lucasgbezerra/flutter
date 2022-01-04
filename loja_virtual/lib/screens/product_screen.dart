@@ -127,16 +127,12 @@ class _ProductScreenState extends State<ProductScreen> {
                         ? () {
                             if (UserModel.of(context).isLoggedIn()) {
                               // add to cart
-                              // CartProduct cartProduct = CartProduct().copyWith(
-                              //     size: size,
-                              //     quantity: 1,
-                              //     pid: product.id,
-                              //     category: product.category);
                               CartProduct cartProduct = CartProduct();
                               cartProduct.category = product.category;
                               cartProduct.size = size;
                               cartProduct.pid =  product.id;
                               cartProduct.quantity = 1;
+                              cartProduct.productData = product;
                               
                               CartModel.of(context).addCartItem(cartProduct);
 
