@@ -24,7 +24,7 @@ class _SignupScreenState extends State<SignupScreen> {
     return Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
-          title: Text("Cadastrar"),
+          title: Text("Sign up"),
           centerTitle: true,
           backgroundColor: Theme.of(context).primaryColor,
         ),
@@ -43,10 +43,10 @@ class _SignupScreenState extends State<SignupScreen> {
                   TextFormField(
                     controller: _nameController,
                     validator: (value) {
-                      if (value!.isEmpty) return "Nome inválido";
+                      if (value!.isEmpty) return "Invalid name!";
                     },
                     decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.person), hintText: "Nome"),
+                        prefixIcon: Icon(Icons.person), hintText: "Name"),
                   ),
                   SizedBox(
                     height: 16.0,
@@ -55,10 +55,10 @@ class _SignupScreenState extends State<SignupScreen> {
                     controller: _emailController,
                     validator: (value) {
                       if (value!.isEmpty || !value.contains("@"))
-                        return "E-mail inválido!";
+                        return "Invalid Email address!";
                     },
                     decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.email), hintText: "E-mail"),
+                        prefixIcon: Icon(Icons.email), hintText: "Email address"),
                   ),
                   SizedBox(
                     height: 16.0,
@@ -67,18 +67,18 @@ class _SignupScreenState extends State<SignupScreen> {
                     controller: _passwordController,
                     validator: (value) {
                       if (value!.length < 7)
-                        return "A senha deve ter no mínimo 7 dígitos";
+                        return "Password must be at least 7 characters.";
                     },
                   ),
                   SizedBox(
                     height: 16.0,
                   ),
                   PasswordFieldWidget(
-                    hint: "Confirmar Senha",
+                    hint: "Re-enter password",
                     controller: _passConfirmController,
                     validator: (value) {
                       if (value!.compareTo(_passwordController.text) != 0)
-                        return "As senhas não são iguais";
+                        return "Password must match!";
                     },
                   ),
                   SizedBox(
@@ -101,7 +101,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         }
                       },
                       child: Text(
-                        "Criar",
+                        "Create account",
                         style: TextStyle(color: Colors.white),
                       ),
                       style: TextButton.styleFrom(
@@ -119,7 +119,7 @@ class _SignupScreenState extends State<SignupScreen> {
   void _onFail() {
     ScaffoldMessenger.maybeOf(context)!.showSnackBar(
       SnackBar(
-        content: Text("Não foi possível criar o usuário!"),
+        content: Text("Unable to create account!"),
         duration: Duration(seconds: 2),
         backgroundColor: Colors.red,
       ),

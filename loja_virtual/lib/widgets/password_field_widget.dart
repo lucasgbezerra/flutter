@@ -31,7 +31,7 @@ class _PasswordFieldWidgetState extends State<PasswordFieldWidget> {
                     ? Icon(Icons.visibility)
                     : Icon(Icons.visibility_off),
                 onPressed: togglePasswordVisibility),
-            hintText: widget.hint != null ? widget.hint : "Senha"),
+            hintText: widget.hint != null ? widget.hint : "Password"),
         obscureText: _isVisible);
   }
 

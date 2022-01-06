@@ -29,7 +29,7 @@ class OrderTile extends StatelessWidget {
                   children: [
                     Text.rich(
                       TextSpan(
-                          text: "Código do pedido: ",
+                          text: "Order code: ",
                           style: TextStyle(fontWeight: FontWeight.bold),
                           children: [
                             TextSpan(
@@ -42,7 +42,7 @@ class OrderTile extends StatelessWidget {
                     Text(_buildProductText(snapshot.data!)),
                     SizedBox(height: 5),
                     Text(
-                      "Status do pedido:",
+                      "Order status:",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Container(
@@ -51,11 +51,11 @@ class OrderTile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          _buildCircle("1", "Preparação", status, 1),
+                          _buildCircle("1", "To be shipped", status, 1),
                           Expanded(child: Divider(color: Colors.black)),
-                          _buildCircle("2", "Transporte", status, 2),
+                          _buildCircle("2", "Shipped", status, 2),
                           Expanded(child: Divider(color: Colors.black)),
-                          _buildCircle("3", "Entrega", status, 3),
+                          _buildCircle("3", "Delivered", status, 3),
                         ],
                       ),
                     ),
@@ -69,12 +69,12 @@ class OrderTile extends StatelessWidget {
   }
 
   String _buildProductText(DocumentSnapshot snapshot) {
-    String text = "Descrição:\n";
+    String text = "Description:\n";
 
     for (LinkedHashMap product in snapshot.get('products')) {
       double price = product['product']['price'];
       text +=
-          "${product['quantity']}x ${product['product']['title']} (R\$ ${price.toStringAsFixed(2)})\n";
+          "${product['quantity']}x ${product['product']['title']} (\$ ${price.toStringAsFixed(2)})\n";
     }
     double totalPrice = snapshot.get('totalPrice');
     text += "Total: R\$ ${totalPrice.toStringAsFixed(2)}";

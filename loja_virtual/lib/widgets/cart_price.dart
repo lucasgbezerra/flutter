@@ -21,7 +21,7 @@ class CartPrice extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Resumo do pedido",
+                  "Order Summary",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                   ),
@@ -31,24 +31,24 @@ class CartPrice extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Subtotal"),
-                    Text("R\$ ${subtotal.toStringAsFixed(2)}"),
+                    Text("Sub Total"),
+                    Text("\$ ${subtotal.toStringAsFixed(2)}"),
                   ],
                 ),
                 Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Desconto"),
-                    Text("R\$ ${discount.toStringAsFixed(2)}"),
+                    Text("Discount"),
+                    Text("\$ ${discount.toStringAsFixed(2)}"),
                   ],
                 ),
                 Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Frete"),
-                    Text("R\$ ${shipment.toStringAsFixed(2)}"),
+                    Text("Shipping"),
+                    Text("\$ ${shipment.toStringAsFixed(2)}"),
                   ],
                 ),
                 Divider(),
@@ -61,14 +61,14 @@ class CartPrice extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      "R\$ ${(subtotal + discount + shipment).toStringAsFixed(2)}",
+                      "\$ ${(subtotal + discount + shipment).toStringAsFixed(2)}",
                       style: TextStyle(color: Theme.of(context).primaryColor),
                     ),
                   ],
                 ),
                 SizedBox(height: 12),
                 ElevatedButton(
-                    child: Text("Finalizar Pedido"),
+                    child: Text("Checkout"),
                     onPressed: onPressed,
                     style: ElevatedButton.styleFrom(
                       primary: Theme.of(context).primaryColor,

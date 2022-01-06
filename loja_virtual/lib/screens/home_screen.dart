@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
         ),
         Scaffold(
           appBar: AppBar(
-            title: Text("Lojas"),
+            title: Text("Stores"),
             centerTitle: true,
           ),
           body: PlacesTab(),
@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
         ),
         Scaffold(
           appBar: AppBar(
-            title: Text("Meus pedidos"),
+            title: Text("My orders"),
             centerTitle: true,
           ),
           body: OrdersTab(),

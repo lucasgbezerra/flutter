@@ -16,7 +16,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Carrinho"),
+        title: Text("Cart"),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
         actions: <Widget>[
@@ -57,7 +57,7 @@ class CartScreen extends StatelessWidget {
                     height: 15,
                   ),
                   Text(
-                    "Faça Login para visualizar os itens no carrinho!",
+                    "Sign In to view itens in cart.",
                     style: TextStyle(fontSize: 20),
                     textAlign: TextAlign.center,
                   ),
@@ -69,7 +69,7 @@ class CartScreen extends StatelessWidget {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => LoginScreen()));
                     },
-                    child: Text("Login"),
+                    child: Text("Sign In"),
                     style: ElevatedButton.styleFrom(
                         primary: Theme.of(context).primaryColor,
                         minimumSize: Size(double.maxFinite, 40)),
@@ -81,7 +81,7 @@ class CartScreen extends StatelessWidget {
             // Usuário não tem nenhum produto no carrinho
             return Center(
               child: Text(
-                "Nenhum produto no carrinho!",
+                "Your cart is empty!",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),

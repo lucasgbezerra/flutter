@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Entrar"),
+          title: Text("Sign In"),
           centerTitle: true,
           backgroundColor: Theme.of(context).primaryColor,
           actions: [
@@ -31,10 +31,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     MaterialPageRoute(builder: (context) => SignupScreen()));
               },
               child: Text(
-                "CRIAR CONTA",
+                "Create an account",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 15.0,
+                  fontSize: 14.0,
                 ),
               ),
               style: TextButton.styleFrom(
@@ -56,17 +56,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: _emailController,
                     validator: (value) {
                       if (value!.isEmpty || !value.contains("@"))
-                        return "E-mail inválido!";
+                        return "Invalid Email address!";
                     },
                     decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.email), hintText: "Email"),
+                        prefixIcon: Icon(Icons.email), hintText: "Email address"),
                   ),
                   SizedBox(
                     height: 16.0,
                   ),
                   PasswordFieldWidget(
                     controller: _passwordController,
-                    validator: (value) => value!.isEmpty ? "Campo vazio" : null,
+                    validator: (value) => value!.isEmpty ? "Empty field." : null,
                   ),
                   Align(
                     heightFactor: 2,
@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (_emailController.text.isEmpty){
                           ScaffoldMessenger.maybeOf(context)!.showSnackBar(
                             SnackBar(
-                              content: Text("O campo não pode estar vazio, adicione um email para recuperação"),
+                              content: Text("Field cannot be empty, add an email address to recovery."),
                               duration: Duration(seconds: 2),
                               backgroundColor: Colors.red,
                             ),
@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           model.recoverPassword(email: _emailController.text);
                            ScaffoldMessenger.maybeOf(context)!.showSnackBar(
                             SnackBar(
-                              content: Text("Email enviado, confira seu email!"),
+                              content: Text("Message sent, check your email inbox!"),
                               duration: Duration(seconds: 2),
                               backgroundColor: Theme.of(context).primaryColor,
                             ),
@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                       },
                       child: Text(
-                        "Esqueci a senha",
+                        "Forgot your password?",
                         style: TextStyle(fontSize: 14.0),
                       ),
                     ),
@@ -114,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               onFail: _onFail);
                       },
                       child: Text(
-                        "Entrar",
+                        "Sign In",
                         style: TextStyle(color: Colors.white),
                       ),
                       style: TextButton.styleFrom(

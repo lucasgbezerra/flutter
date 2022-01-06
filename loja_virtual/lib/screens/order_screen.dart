@@ -9,7 +9,7 @@ class OrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pedido Realizado"),
+        title: Text("Confirmed Order"),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
       ),
@@ -23,8 +23,8 @@ class OrderScreen extends StatelessWidget {
               color: Theme.of(context).primaryColor,
               size: 70,
             ),
-            Text("Pedido realizado com sucesso!"),
-            Text("Código do pedido: ${orderId}"),
+            Text("Order confirmed successfully!"),
+            Text("Order Code: ${orderId}"),
           ],
         ),
       ),

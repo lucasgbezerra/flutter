@@ -16,7 +16,6 @@ class HomeTab extends StatelessWidget {
         gradient: LinearGradient(colors: [
           Color.fromARGB(255, 211, 118, 130),
           Color.fromARGB(255, 253, 181, 168)
-
         ],
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter
@@ -40,7 +39,7 @@ class HomeTab extends StatelessWidget {
               elevation: 0.0,
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
-                title: const Text("Novidades"),
+                title: const Text("News"),
               ),
             ),
             FutureBuilder<QuerySnapshot>(

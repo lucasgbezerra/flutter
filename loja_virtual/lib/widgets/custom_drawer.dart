@@ -53,10 +53,10 @@ class CustomDrawer extends StatelessWidget {
                         return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Olá, ${model.isLoggedIn() ? model.userData["name"] : ""}", style: TextStyle(fontSize: 18.0, 
+                          Text("Hello, ${model.isLoggedIn() ? model.userData["name"] : ""}", style: TextStyle(fontSize: 18.0, 
                           fontWeight: FontWeight.bold)),
                           GestureDetector( // Texto clicavél
-                            child: Text( model.isLoggedIn() ? "Sair" : "Entre ou cadastre-se >", style: TextStyle(fontSize: 16.0, 
+                            child: Text( model.isLoggedIn() ? "Sign out" : "Sign in >", style: TextStyle(fontSize: 16.0, 
                             fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
                             onTap: (){
                               if(model.isLoggedIn())
@@ -73,9 +73,9 @@ class CustomDrawer extends StatelessWidget {
               //Divide a list view com um espaço
               Divider(),
               DrawerTile(Icons.home, "Home", pageController, 0),
-              DrawerTile(Icons.list, "Produtos", pageController, 1),
-              DrawerTile(Icons.location_on, "Lojas", pageController, 2),
-              DrawerTile(Icons.playlist_add_check, "Meus Pedidos", pageController, 3),
+              DrawerTile(Icons.list, "Products", pageController, 1),
+              DrawerTile(Icons.location_on, "Stores", pageController, 2),
+              DrawerTile(Icons.playlist_add_check, "Your orders", pageController, 3),
             ],
           )
         ],),

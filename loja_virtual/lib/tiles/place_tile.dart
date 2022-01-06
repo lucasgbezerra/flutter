@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class PlaceTile extends StatelessWidget {
   final DocumentSnapshot snapshot;
   const PlaceTile(this.snapshot, {Key? key}) : super(key: key);
@@ -41,22 +40,24 @@ class PlaceTile extends StatelessWidget {
                 children: [
                   TextButton(
                     onPressed: () {
-                      launch("https://www.google.com/maps/search/?api=1&query=${snapshot.get('latitude')},${snapshot.get('longitude')}");
+                      launch(
+                          "https://www.google.com/maps/search/?api=1&query=${snapshot.get('latitude')},${snapshot.get('longitude')}");
                     },
-                    child: Text("Ver no mapa"),
+                    child: Text("Location"),
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                       enableFeedback: false,
                     ),
-            
                   ),
                   TextButton(
                     onPressed: () {
                       launch("tel:${snapshot.get('phone')}");
                     },
-                    child: Text("Ligar"),
+                    child: Text("Call"),
                     style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero, enableFeedback: false),
+                      padding: EdgeInsets.zero,
+                      enableFeedback: false,
+                    ),
                   ),
                 ],
               )

@@ -38,7 +38,7 @@ class CartProductTile extends StatelessWidget {
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  "Tamanho: ${cartProduct.size}",
+                  "Size: ${cartProduct.size}",
                   style: TextStyle(fontWeight: FontWeight.w300),
                 ),
                 Text("\$ ${cartProduct.productData!.price.toStringAsFixed(2)}",
@@ -69,7 +69,7 @@ class CartProductTile extends StatelessWidget {
                       onPressed: (){
                         CartModel.of(context).removeCartItem(cartProduct);
                       },
-                      child: Text("Remover", style: TextStyle(fontWeight: FontWeight.w300)),
+                      child: Text("Remove", style: TextStyle(fontWeight: FontWeight.w300)),
                     )
                   ],
                 )

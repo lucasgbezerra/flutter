@@ -10,7 +10,7 @@ class DiscountCard extends StatelessWidget {
     return ExpansionTile(
       iconColor: Colors.grey[700],
       title: Text(
-        "Cupom de Desconto",
+        "Promo Code",
         textAlign: TextAlign.start,
         style: TextStyle(
           fontWeight: FontWeight.w500,
@@ -24,7 +24,7 @@ class DiscountCard extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: TextFormField(
             decoration: InputDecoration(
-                border: OutlineInputBorder(), hintText: "Digite seu cupom"),
+                border: OutlineInputBorder(), hintText: "Enter your Promo Code"),
             initialValue: CartModel.of(context).couponCode ?? "",
             onFieldSubmitted: (text) {
               FirebaseFirestore.instance
@@ -36,14 +36,14 @@ class DiscountCard extends StatelessWidget {
                   CartModel.of(context).setCoupon(text, value.get('percent'));
                   ScaffoldMessenger.maybeOf(context)!.showSnackBar(
                     SnackBar(
-                      content: Text("Cupom de ${value.get('percent')}% aplicado!"),
+                      content: Text("Promo Code ${value.get('percent')}% applied!"),
                       duration: Duration(seconds: 2),
                       backgroundColor: Theme.of(context).primaryColor,
                     ),
                   );
                 } else {
                   ScaffoldMessenger.maybeOf(context)!.showSnackBar(SnackBar(
-                    content: Text("Cupom Inválido",),
+                    content: Text("Invalid Promo Code",),
                     duration: Duration(seconds: 2),
                     backgroundColor: Colors.red,
                   ));

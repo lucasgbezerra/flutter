@@ -59,7 +59,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   maxLines: 3,
                 ),
                 Text(
-                  "R\$ ${product.price.toStringAsFixed(2)}",
+                  "\$ ${product.price.toStringAsFixed(2)}",
                   style: TextStyle(
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   height: 16.0,
                 ),
                 Text(
-                  "Tamanho:",
+                  "Size:",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16.0,
@@ -116,8 +116,8 @@ class _ProductScreenState extends State<ProductScreen> {
                   child: ElevatedButton(
                     child: Text(
                       UserModel.of(context).isLoggedIn()
-                          ? "Adicionar ao carrinho"
-                          : "Entre para comprar",
+                          ? "Add to cart"
+                          : "Sign in to buy",
                       style: TextStyle(
                         fontSize: 16.0,
                       ),
@@ -150,7 +150,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   height: 16.0,
                 ),
                 Text(
-                  "Descrição: ",
+                  "Description: ",
                   style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w500,
