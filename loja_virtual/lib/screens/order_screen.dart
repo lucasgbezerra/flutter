@@ -11,7 +11,7 @@ class OrderScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Confirmed Order"),
         centerTitle: true,
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Color.fromARGB(255, 211, 118, 130),
       ),
       body: Container(
         alignment: Alignment.center,

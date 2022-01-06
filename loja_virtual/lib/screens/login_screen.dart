@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
         appBar: AppBar(
           title: Text("Sign In"),
           centerTitle: true,
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Color.fromARGB(255, 211, 118, 130),
           actions: [
             TextButton(
               onPressed: () {
@@ -118,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(color: Colors.white),
                       ),
                       style: TextButton.styleFrom(
-                        backgroundColor: Theme.of(context).primaryColor,
+                        backgroundColor: Color.fromARGB(255, 211, 118, 130),
                       ),
                     ),
                   )

@@ -26,7 +26,7 @@ class _SignupScreenState extends State<SignupScreen> {
         appBar: AppBar(
           title: Text("Sign up"),
           centerTitle: true,
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Color.fromARGB(255, 211, 118, 130),
         ),
         body:
             ScopedModelDescendant<UserModel>(builder: (context, child, model) {
@@ -105,7 +105,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         style: TextStyle(color: Colors.white),
                       ),
                       style: TextButton.styleFrom(
-                        backgroundColor: Theme.of(context).primaryColor,
+                        backgroundColor: Color.fromARGB(255, 211, 118, 130),
                       ),
                     ),
                   )

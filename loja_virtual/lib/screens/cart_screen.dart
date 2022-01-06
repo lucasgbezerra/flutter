@@ -18,7 +18,7 @@ class CartScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Cart"),
         centerTitle: true,
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Color.fromARGB(255, 211, 118, 130),
         actions: <Widget>[
           Container(
               alignment: Alignment.center,
@@ -71,7 +71,7 @@ class CartScreen extends StatelessWidget {
                     },
                     child: Text("Sign In"),
                     style: ElevatedButton.styleFrom(
-                        primary: Theme.of(context).primaryColor,
+                        primary: Color.fromARGB(255, 211, 118, 130),
                         minimumSize: Size(double.maxFinite, 40)),
                   )
                 ],
@@ -93,7 +93,7 @@ class CartScreen extends StatelessWidget {
                 Column(
                     children: model.products.map((product) {
                   return CartProductTile(cartProduct: product);
-                }).toList()),
+                }).toList().reversed.toList()),
                 DiscountCard(),
                 ShipCard(),
                 CartPrice(

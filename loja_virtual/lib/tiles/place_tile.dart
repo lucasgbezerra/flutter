@@ -43,7 +43,10 @@ class PlaceTile extends StatelessWidget {
                       launch(
                           "https://www.google.com/maps/search/?api=1&query=${snapshot.get('latitude')},${snapshot.get('longitude')}");
                     },
-                    child: Text("Location"),
+                    child: Text(
+                      "Location",
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                       enableFeedback: false,
@@ -53,7 +56,10 @@ class PlaceTile extends StatelessWidget {
                     onPressed: () {
                       launch("tel:${snapshot.get('phone')}");
                     },
-                    child: Text("Call"),
+                    child: Text(
+                      "Call",
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                       enableFeedback: false,

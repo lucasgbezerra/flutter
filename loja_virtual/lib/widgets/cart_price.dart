@@ -71,7 +71,7 @@ class CartPrice extends StatelessWidget {
                     child: Text("Checkout"),
                     onPressed: onPressed,
                     style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).primaryColor,
+                      primary: Color.fromARGB(255, 211, 118, 130),
                       minimumSize: Size.fromHeight(40)
                     )),
               ],

@@ -22,7 +22,7 @@ class OrdersTab extends StatelessWidget {
             if (!snapshot.hasData) {
               return Center(child: CircularProgressIndicator());
             }else{
-              return ListView(children: snapshot.data!.docs.map((doc) => OrderTile(doc.id)).toList());
+              return ListView(children: snapshot.data!.docs.map((doc) => OrderTile(doc.id)).toList().reversed.toList());
             }
           });
     } else {
@@ -39,7 +39,7 @@ class OrdersTab extends StatelessWidget {
             ),
             SizedBox(height: 15),
             Text(
-              "Faça Login para acompanhar seus pedidos!",
+              "Login to view your orders!",
               style: TextStyle(fontSize: 20),
               textAlign: TextAlign.center,
             ),
@@ -53,7 +53,7 @@ class OrdersTab extends StatelessWidget {
               },
               child: Text("Login"),
               style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColor,
+                  primary: Color.fromARGB(255, 211, 118, 130),
                   minimumSize: Size(double.maxFinite, 40)),
             )
           ],

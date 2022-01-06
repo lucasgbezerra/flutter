@@ -22,12 +22,10 @@ class MyApp extends StatelessWidget {
             return ScopedModel<CartModel>(
               model: CartModel(model),
               child: MaterialApp(
-                title: 'Flutter store',
+                title: 'Flutter loja',
                 theme: ThemeData(
-                  primarySwatch: Colors.pink,
-                  primaryColor: Color.fromARGB(255, 4, 125, 141),
-                  secondaryHeaderColor: Color.fromARGB(255, 211, 118, 130)
-                ),
+                    primarySwatch: Colors.pink,
+                    primaryColor: Color.fromARGB(255, 4, 125, 141)),
                 // Retirar a flag de debug
                 debugShowCheckedModeBanner: false,
                 home: HomeScreen(),

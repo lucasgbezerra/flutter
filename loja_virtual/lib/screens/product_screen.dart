@@ -122,7 +122,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         fontSize: 16.0,
                       ),
                     ),
-                    style: ElevatedButton.styleFrom(primary: primaryColor),
+                    style: ElevatedButton.styleFrom(primary: Color.fromARGB(255, 211, 118, 130)),
                     onPressed: size != null
                         ? () {
                             if (UserModel.of(context).isLoggedIn()) {
