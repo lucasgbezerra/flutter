@@ -11,8 +11,8 @@ Tabela de conteúdos
      * [Pré-requisitos](#pré-requisitos)
      * [Rodando o aplicativo](#-rodando-o-aplicativo)
    * [Tecnologias](#-tecnologias)
-     * [Principais](#-principais)
-     * [Ultilitario](#-utilitarios)
+     * [Principais](#principais)
+     * [Ultilitario](#utilitários)
    * [Como contribuir no projeto](#-como-contribuir-no-projeto)
    * [Autor](#-autor)
    * [Licença](#-licença)
@@ -116,7 +116,7 @@ Lucas Gabriel
 
 ## 📝 Licença
 
-Este projeto esta sobe a licença [MIT](./LICENSE).
+Este projeto esta sobe a licença [MIT](./../LICENSE).
 
 Feito por Lucas Gabriel 👋🏽 [Entre em contato!](https://www.linkedin.com/in/lucas-gabriel-4860b4228)
 
