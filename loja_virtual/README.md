@@ -5,17 +5,19 @@
 Tabela de conteúdos
 =================
    * [Sobre o projeto](#-sobre-o-projeto)
-   * [Layout](#layout)
+   * [Layout](#-layout)
      * [Mobile](#mobile)
    * [Como executar o projeto](#-como-executar-o-projeto)
      * [Pré-requisitos](#pré-requisitos)
-     * [Rodando o aplicativo](#user-content--rodando)
+     * [Rodando o aplicativo](#-rodando-o-aplicativo)
    * [Tecnologias](#-tecnologias)
-     * [Mobile](#user-content-mobile--react-native----typescript)
+     * [Principais](#-principais)
+     * [Ultilitario](#-utilitarios)
    * [Como contribuir no projeto](#-como-contribuir-no-projeto)
    * [Autor](#-autor)
-   * [Licença](#user-content--licença)
+   * [Licença](#-licença)
 
+---
 
 ## 💻 Sobre o projeto
 
@@ -70,11 +72,8 @@ $ flutter run
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-#### **Server**
+#### **Principais**
 -   **[Firebase](https://firebase.google.com/)**
-
-#### **Mobile**
-
 -   **[Flutter](https://flutter.dev/)**
 -   **[Dart](https://dart.dev/)**
 
