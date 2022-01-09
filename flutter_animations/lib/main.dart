@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations/menu_screen.dart';
+import 'package:flutter_animations/plant_grow.dart';
 import 'package:flutter_animations/star_spinning.dart';
 import 'package:rive/rive.dart';
 
@@ -32,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Future.delayed(Duration(seconds: 2)).then((_) => Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => StarSpinning())));
+        .pushReplacement(MaterialPageRoute(builder: (context) => MenuScreen())));
   }
 
   @override

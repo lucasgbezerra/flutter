@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
 
+// Utiliza de uma state machine com um input(t/f) para pular
+
 class StarSpinning extends StatefulWidget {
   const StarSpinning({Key? key}) : super(key: key);
 

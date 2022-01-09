@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animations/heart_screen.dart';
+import 'package:flutter_animations/plant_grow.dart';
 import 'package:flutter_animations/star_spinning.dart';
 import 'package:rive/rive.dart';
 
@@ -34,12 +35,17 @@ class MenuScreen extends StatelessWidget {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => StarSpinning()));
             },
             child: Container(
-              color: Colors.blue[200],
               child: RiveAnimation.asset('assets/star_spinning.riv', animations: ['Spinning']),
             ),
           ),
-          Container(
-            child: RiveAnimation.asset('assets/tree_demo.riv', animations: ['Example'],),
+          GestureDetector(
+            onTap: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => PlantGrow()));
+
+            },
+            child: Container(
+              child: RiveAnimation.asset('assets/tree_grow.riv', animations: ['Example'],),
+            ),
           ),
         ],
       ),
