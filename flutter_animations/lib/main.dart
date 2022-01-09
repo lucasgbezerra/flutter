@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations/star_spinning.dart';
 import 'package:rive/rive.dart';
 
 void main() {
@@ -31,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Future.delayed(Duration(seconds: 2)).then((_) => Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => HomePage())));
+        .pushReplacement(MaterialPageRoute(builder: (context) => StarSpinning())));
   }
 
   @override
@@ -46,58 +47,5 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
     ));
-  }
-}
-
-class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  IconData iconData = Icons.pause;
-  late RiveAnimationController _spinningController;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    _spinningController = OneShotAnimation('Spinning');
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Container(
-          height: 150,
-          width: 150,
-          child: RiveAnimation.asset(
-            'assets/star_spinning.riv',
-            // animations: ['Jump', 'Spinning'],
-            controllers: [
-              _spinningController,
-            ],
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(iconData),
-        onPressed: () {
-          if (_spinningController.isActive == true) {
-            setState(() {
-              _spinningController.isActive = false;
-              iconData = Icons.play_arrow;
-            });
-          }else{
-            _spinningController.isActive = true;
-            iconData = Icons.pause;
-          }
-        },
-      ),
-    );
   }
 }
