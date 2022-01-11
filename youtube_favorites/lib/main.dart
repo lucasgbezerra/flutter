@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_favorites/resources/api.dart';
 import 'package:youtube_favorites/screens/home.dart';
 
 void main() {
-  Api api = Api();
-
-  api.search('flamengo');
   runApp(const MyApp());
 }
 
