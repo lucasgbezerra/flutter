@@ -5,12 +5,12 @@ import 'package:youtube_favorites/models/video.dart';
 import 'configs.dart';
 
 class Api{
-  void search(String search) async{
+  Future<List<Video>> search(String search) async{
     
     http.Response response = await http.get(Uri.parse('https://www.googleapis.com/youtube/v3/search?part=snippet&q=$search&type=video&key=$API_KEY&maxResults=10'));
 
 
-    decode(response);
+    return decode(response);
 
   }
 
