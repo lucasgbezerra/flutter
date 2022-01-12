@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:flutter/material.dart';
 
 import 'package:youtube_favorites/models/video.dart';
 import 'package:youtube_favorites/resources/api.dart';
@@ -17,26 +16,25 @@ class VideosBloc extends BlocBase {
   final _searchController = StreamController<String>();
   Sink get inSearch => _searchController.sink;
 
-  VideosBloc(
-  ) {
+  VideosBloc() {
     api = Api();
 
     _searchController.stream.listen(_search);
-
-    
   }
 
-  void _search(String search) async {
-    videos = await api!.search(search);
+  void _search(String? search) async {
+    if (search != null && search != "") {
+      _videosController.sink.add([]);
+      videos = await api!.search(search);
+    } else {
+      videos = videos! + await api!.nextPage();
+    }
     _videosController.sink.add(videos!);
-
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _videosController.close();
     _searchController.close();
   }
-  
 }

@@ -12,8 +12,9 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     final VideosBloc bloc = BlocProvider.getBloc<VideosBloc>();
+
     return Scaffold(
-      backgroundColor: Colors.black,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           title: Container(
             height: 25.0,
@@ -46,17 +47,31 @@ class Home extends StatelessWidget {
             )
           ],
         ),
-        body: StreamBuilder <List<Video>>(
+        body: StreamBuilder<List<Video>>(
           stream: bloc.outVideos,
           builder: (context, snapshot) {
-            if(snapshot.hasData){
+            if (snapshot.hasData) {
               return ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index){
-                
-                return VideoTileWidget(snapshot.data![index]);
-              });
-            }else{
+                  itemCount: snapshot.data!.length + 1,
+                  itemBuilder: (context, index) {
+                    if (index < snapshot.data!.length) {
+                      return VideoTileWidget(snapshot.data![index]);
+                    } else if (index > 1) {
+                      bloc.inSearch.add("");
+                      return Container(
+                        width: 40,
+                        height: 40,
+                        alignment: Alignment.center,
+                        child: const CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white),
+                        ),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  });
+            } else {
               return Container();
             }
           },
