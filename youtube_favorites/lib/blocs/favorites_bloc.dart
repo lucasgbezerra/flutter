@@ -27,7 +27,6 @@ class FavoritesBloc extends BlocBase {
   }
 
   void _saveFavorites() async {
-    // print("Favorites: ${_favorites}");
     await SharedPreferences.getInstance().then((value) {
       value.setString("favorites", json.encode(_favorites));
     });

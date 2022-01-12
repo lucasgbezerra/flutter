@@ -2,6 +2,8 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_favorites/blocs/favorites_bloc.dart';
 import 'package:youtube_favorites/models/video.dart';
+import 'package:youtube_favorites/screens/video_screen.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({Key? key}) : super(key: key);
@@ -23,7 +25,17 @@ class FavoritesScreen extends StatelessWidget {
               return ListView(
                 children: snapshot.data!.values.map((video) {
                   return InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      final controller = YoutubePlayerController(
+                        initialVideoId: video.id,
+                        flags: YoutubePlayerFlags(
+                          mute: false,
+                          autoPlay: true,
+                        ),
+                      );
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => VideoScreen(controller)));
+                    },
                     onLongPress: () {
                       blocFav.toggleFavorites(video);
                     },

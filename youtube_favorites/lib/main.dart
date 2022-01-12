@@ -14,7 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      blocs: [Bloc<VideosBloc>((i) => VideosBloc()), Bloc<FavoritesBloc>((i) => FavoritesBloc())],
+      blocs: [
+        Bloc<VideosBloc>((i) => VideosBloc()),
+        Bloc<FavoritesBloc>((i) => FavoritesBloc())
+      ],
       dependencies: [],
       child: MaterialApp(
           title: 'YouTube Favs',

@@ -23,7 +23,6 @@ class Video {
 
 
   factory Video.fromJson(Map<String, dynamic> map) {
-    // print("MAP " + map.toString());
     if (map.containsKey('id')) {
       return Video(
         id: map['id']['videoId'] ?? '',
