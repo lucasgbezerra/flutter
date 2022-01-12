@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class Video {
   final String id;
@@ -13,9 +12,9 @@ class Video {
     required this.channel,
   });
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'videoId': id,
       'title': title,
       'thumb': thumb,
       'channel': channel,
@@ -23,14 +22,23 @@ class Video {
   }
 
 
-  String toJson() => json.encode(toMap());
-
   factory Video.fromJson(Map<String, dynamic> map) {
-    return Video(
-      id: map['id']['videoId'] ?? '',
-      title: map['snippet']['title'] ?? '',
-      thumb: map['snippet']['thumbnails']['high']['url'] ?? '',
-      channel: map['snippet']['channelTitle'] ?? '',
-    );
+    // print("MAP " + map.toString());
+    if (map.containsKey('id')) {
+      return Video(
+        id: map['id']['videoId'] ?? '',
+        title: map['snippet']['title'] ?? '',
+        thumb: map['snippet']['thumbnails']['high']['url'] ?? '',
+        channel: map['snippet']['channelTitle'] ?? '',
+      );
+    } else {
+      return Video(
+        id: map['videoId'] ?? '',
+        title: map['title'] ?? '',
+        thumb: map['thumb'] ?? '',
+        channel: map['channel'] ?? '',
+      );
+    }
   }
+
 }

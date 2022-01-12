@@ -16,6 +16,7 @@ class VideosBloc extends BlocBase {
   final _searchController = StreamController<String>();
   Sink get inSearch => _searchController.sink;
 
+  // Utilizando uma stream para enviar infos ao bloc
   VideosBloc() {
     api = Api();
 
@@ -36,5 +37,7 @@ class VideosBloc extends BlocBase {
   void dispose() {
     _videosController.close();
     _searchController.close();
+    super.dispose();
+
   }
 }
