@@ -12,13 +12,12 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     final VideosBloc bloc = BlocProvider.getBloc<VideosBloc>();
 
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          title: Container(
+          title: SizedBox(
             height: 25.0,
             child: Image.asset('images/youtube.png'),
           ),
@@ -29,7 +28,7 @@ class Home extends StatelessWidget {
               width: 24,
               child: StreamBuilder<Map<String, Video>>(
                   stream: BlocProvider.getBloc<FavoritesBloc>().outFavorites,
-                  initialData: {},
+                  initialData: const {},
                   builder: (context, snapshot) {
                     return Text(
                       "${snapshot.data!.length}",
@@ -42,7 +41,7 @@ class Home extends StatelessWidget {
               icon: const Icon(Icons.star),
               onPressed: () {
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => FavoritesScreen()));
+                    MaterialPageRoute(builder: (context) => const FavoritesScreen()));
               },
             ),
             IconButton(

@@ -8,10 +8,15 @@ class VideoScreen extends StatelessWidget {
    @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: YoutubePlayer(
-        controller: controller,
-        showVideoProgressIndicator: true,
+      appBar: AppBar(
+        backgroundColor: Colors.black87,
+      ),
+      backgroundColor: Colors.black87,
+      body: Center(
+        child: YoutubePlayer(
+          controller: controller,
+          showVideoProgressIndicator: true,
+        ),
       ),
     );
   }

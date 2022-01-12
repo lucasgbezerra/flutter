@@ -18,13 +18,14 @@ class MyApp extends StatelessWidget {
         Bloc<VideosBloc>((i) => VideosBloc()),
         Bloc<FavoritesBloc>((i) => FavoritesBloc())
       ],
-      dependencies: [],
+      dependencies: const [],
       child: MaterialApp(
           title: 'YouTube Favs',
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: Home()),
+          home: const Home()),
     );
   }
 }

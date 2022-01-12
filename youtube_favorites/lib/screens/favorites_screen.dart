@@ -28,7 +28,7 @@ class FavoritesScreen extends StatelessWidget {
                     onTap: () {
                       final controller = YoutubePlayerController(
                         initialVideoId: video.id,
-                        flags: YoutubePlayerFlags(
+                        flags: const YoutubePlayerFlags(
                           mute: false,
                           autoPlay: true,
                         ),
