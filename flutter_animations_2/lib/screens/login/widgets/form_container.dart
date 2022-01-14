@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/widgets/input_field.dart';
+import 'package:flutter_animations_2/screens/login/widgets/input_field.dart';
 
 class FormContainer extends StatelessWidget {
   const FormContainer({Key? key}) : super(key: key);

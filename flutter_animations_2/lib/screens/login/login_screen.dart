@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/widgets/form_container.dart';
-import 'package:flutter_animations_2/widgets/signup_button.dart';
-import 'package:flutter_animations_2/widgets/stagger_animation.dart';
+import 'package:flutter_animations_2/screens/login/widgets/form_container.dart';
+import 'package:flutter_animations_2/screens/login/widgets/signup_button.dart';
+import 'package:flutter_animations_2/screens/login/widgets/stagger_animation.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 
 class LoginScreen extends StatefulWidget {
