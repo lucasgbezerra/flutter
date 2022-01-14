@@ -59,7 +59,7 @@ class HomeTop extends StatelessWidget {
                 ),
               ),
             ),
-            CategoryView()
+            const CategoryView()
           ],
         ),
       ),

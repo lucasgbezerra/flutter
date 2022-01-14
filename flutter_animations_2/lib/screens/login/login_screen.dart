@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/screens/home/home_screen.dart';
 import 'package:flutter_animations_2/screens/login/widgets/form_container.dart';
 import 'package:flutter_animations_2/screens/login/widgets/signup_button.dart';
 import 'package:flutter_animations_2/screens/login/widgets/stagger_animation.dart';
@@ -11,13 +12,24 @@ class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStateMixin{
+class _LoginScreenState extends State<LoginScreen>
+    with SingleTickerProviderStateMixin {
   AnimationController? _animationController;
 
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(vsync: this, duration: const Duration(seconds: 2),);
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+
+    _animationController!.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const HomeScreen()));
+      }
+    });
   }
 
   @override
@@ -25,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
     _animationController!.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     // Cria um delay na construção dos elementos
@@ -48,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 70),
+                      padding: const EdgeInsets.only(top: 70),
                       child: Image.asset(
                         "images/tickicon.png",
                         width: 150,
@@ -56,14 +69,13 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                         fit: BoxFit.contain,
                       ),
                     ),
-                  
                     const FormContainer(),
                     const SignupButton(),
                   ],
                 ),
-                    StaggerAnimation(
-                      controller: _animationController!,
-                    )
+                StaggerAnimation(
+                  controller: _animationController!,
+                )
               ],
             )
           ],

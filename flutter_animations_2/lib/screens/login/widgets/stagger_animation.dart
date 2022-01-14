@@ -27,30 +27,33 @@ class StaggerAnimation extends StatelessWidget {
   Widget _buildAnimation(BuildContext context, Widget? child) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 50),
-      child: buttonZoomOut.value == 60
-          ? TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.red,
-                minimumSize: Size(buttonSqueeze.value, 60),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+      child: Hero(
+        tag: "fadeOut",
+        child: buttonZoomOut.value == 60
+            ? TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: const Color.fromRGBO(255, 26, 26, 1.0),
+                  minimumSize: Size(buttonSqueeze.value, 60),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                onPressed: () {
+                  controller.forward();
+                },
+                child: _buildChild(context),
+              )
+            : Container(
+                height: buttonZoomOut.value,
+                width: buttonZoomOut.value,
+                decoration: BoxDecoration(
+                  color: const Color.fromRGBO(255, 26, 26, 1.0),
+                  borderRadius: BorderRadius.circular(buttonZoomOut.value == 60
+                      ? 30
+                      : 30 - 3 * buttonZoomOut.value / 100),
                 ),
               ),
-              onPressed: () {
-                controller.forward();
-              },
-              child: _buildChild(context),
-            )
-          : Container(
-              height: buttonZoomOut.value,
-              width: buttonZoomOut.value,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(buttonZoomOut.value == 60
-                    ? 30
-                    : 30 - 3 * buttonZoomOut.value / 100),
-              ),
-            ),
+      ),
     );
   }
 

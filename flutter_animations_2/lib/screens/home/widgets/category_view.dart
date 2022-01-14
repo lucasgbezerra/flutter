@@ -31,34 +31,31 @@ class _CategoryViewState extends State<CategoryView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // padding: const EdgeInsets.only(top: 30),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color:  _actualCategory > 0 ?  Colors.white : Colors.white24,
-            ),
-            onPressed: _actualCategory > 0 ?  selectBack : null,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color:  _actualCategory > 0 ?  Colors.white : Colors.white24,
           ),
-          Text(
-            categories[_actualCategory].toUpperCase(),
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-            ),
+          onPressed: _actualCategory > 0 ?  selectBack : null,
+        ),
+        Text(
+          categories[_actualCategory].toUpperCase(),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 20,
           ),
-          IconButton(
-            icon: Icon(
-              Icons.arrow_forward_ios,
-              color: _actualCategory < categories.length - 1 ?  Colors.white : Colors.white24,
-            ),
-            onPressed: _actualCategory < categories.length - 1 ?  selectForward : null,
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.arrow_forward_ios,
+            color: _actualCategory < categories.length - 1 ?  Colors.white : Colors.white24,
           ),
-        ],
-      ),
+          onPressed: _actualCategory < categories.length - 1 ?  selectForward : null,
+        ),
+      ],
     );
   }
 }
