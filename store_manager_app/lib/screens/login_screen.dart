@@ -44,7 +44,6 @@ class _LoginScreenState extends State<LoginScreen> {
           stream: _loginBloc.outState,
           initialData: LoginState.LOADING,
           builder: (context, snapshot) {
-            print(snapshot.data);
             switch (snapshot.data) {
               case LoginState.LOADING:
                 return Center(
