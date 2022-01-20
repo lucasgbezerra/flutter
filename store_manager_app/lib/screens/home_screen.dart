@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_manager_app/bloc/user_bloc.dart';
+import 'package:store_manager_app/tabs/orders_tab.dart';
 import 'package:store_manager_app/tabs/users_tab.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             children: [
               UsersTab(),
-              Container(color: Colors.blue),
+              OrdersTab(),
               Container(color: Colors.red),
             ],
           ),
