@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_manager_app/bloc/orders_bloc.dart';
 import 'package:store_manager_app/bloc/user_bloc.dart';
 import 'package:store_manager_app/tabs/orders_tab.dart';
 import 'package:store_manager_app/tabs/users_tab.dart';
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: BlocProvider(
-          blocs: [Bloc((i) =>UserBloc())],
+          blocs: [Bloc((i) =>UserBloc()), Bloc((i) =>OrdersBloc()) ],
           dependencies: [],
           child: PageView(
             controller: _pageController,

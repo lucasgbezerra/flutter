@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:store_manager_app/widgets/order_header.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class OrderTile extends StatelessWidget {
-  const OrderTile({Key? key}) : super(key: key);
+  final DocumentSnapshot order;
+  OrderTile(this.order, {Key? key}) : super(key: key);
+
+  final status = ["", "Packed", "Shipped", "Out for delivery", "Delivered"];
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +15,7 @@ class OrderTile extends StatelessWidget {
       child: Card(
         child: ExpansionTile(
           title: Text(
-            "xxxxxxx",
+            "${order.id.substring(order.id.length - 7)} - ${status[order.get('status')]}",
             style: TextStyle(color: Colors.green),
           ),
           children: [
@@ -21,17 +25,21 @@ class OrderTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   OrderHeader(),
-                  ListTile(
-                    title: Text(
-                      "Air Jordan 12",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text("sneakers/fasdgdafhdgfhg"),
-                    trailing: Text(
-                      "2",
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    contentPadding: EdgeInsets.zero,
+                  Column(
+                    children: order.get('products').map<Widget>((product) {
+                      return ListTile(
+                        title: Text(
+                          "${product['product']['title']} ${product['size']}",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle:
+                            Text("${product['category']}/${product['pid']}"),
+                        trailing: Text(
+                          "${product['quantity']}",
+                        ),
+                        contentPadding: EdgeInsets.zero,
+                      );
+                    }).toList(),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
