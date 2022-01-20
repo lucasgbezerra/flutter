@@ -41,6 +41,19 @@ class UserTile extends StatelessWidget {
             SizedBox(
               height: 20,
               width: 100,
+              // Shimmer é um package do efeito de cintilar para carregamento
+              child: Shimmer.fromColors(
+                  child: Container(
+                    color: Colors.white,
+                    margin: EdgeInsets.symmetric(vertical: 4),
+                  ),
+                  baseColor: Color(Colors.grey[300]!.value),
+                  highlightColor: Color(Colors.grey[100]!.value)),
+            ),
+            SizedBox(
+              height: 20,
+              width: 150,
+              // Shimmer é um package do efeito de cintilar para carregamento
               child: Shimmer.fromColors(
                   child: Container(
                     color: Colors.white,

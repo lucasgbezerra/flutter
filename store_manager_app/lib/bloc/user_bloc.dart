@@ -16,6 +16,22 @@ class UserBloc extends BlocBase {
     // Add a listener para observar mudanças nos usuários
     _addUsersListener();
   }
+  void onChangedSearch(String search){
+    if(search.trim().isEmpty){
+      _userController.add(_users.values.toList());
+    }else{
+      _userController.add(_filter(search.trim()));
+    }
+  }
+
+  List<Map<String, dynamic>> _filter(String search){
+    List<Map<String, dynamic>> filteredUsers = List.from(_users.values.toList());
+
+    filteredUsers.retainWhere((user) {
+      return user['name'].toUpperCase().contains(search.toUpperCase());
+    });
+    return filteredUsers;
+  }
 
   void _addUsersListener() {
     //Stream da coleção de users

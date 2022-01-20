@@ -13,14 +13,17 @@ class UsersTab extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
           child: TextField(
+            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-                hintText: "Search",
-                hintStyle: TextStyle(color: Colors.white),
-                border: InputBorder.none),
+              icon: Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+              hintText: "Search",
+              hintStyle: TextStyle(color: Colors.white),
+              border: InputBorder.none,
+            ),
+            onChanged: _userBloc.onChangedSearch,
           ),
         ),
         StreamBuilder<List>(
@@ -42,15 +45,16 @@ class UsersTab extends StatelessWidget {
                   ),
                 );
               } else {
+                // TODO: Corrigir a criação da lista, esta crianco com base no número de usuários e não de usuários com compras
                 return ListView.separated(
-                    itemBuilder: (context, index) {
-                      return UserTile(snapshot.data![index]);
-                    },
-                    separatorBuilder: (context, index) => const Divider(),
-                    itemCount: snapshot.data!.length,
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    );
+                  itemBuilder: (context, index) {
+                    return UserTile(snapshot.data![index]);
+                  },
+                  separatorBuilder: (context, index) => const Divider(),
+                  itemCount: snapshot.data!.length,
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                );
               }
             })
       ],
