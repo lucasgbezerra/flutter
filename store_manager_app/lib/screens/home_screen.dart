@@ -16,7 +16,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _pageIndex = 0;
   final _pageController = PageController();
-  final _ordersBloc = BlocProvider.getBloc<OrdersBloc>();
 
   @override
   void initState() {
@@ -25,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         body: SafeArea(
@@ -73,42 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        floatingActionButton: _buildFloatingActionButton());
+        );
   }
 
-  Widget? _buildFloatingActionButton() {
-    if (_pageIndex == 1) {
-      return SpeedDial(
-        icon: Icons.sort,
-        backgroundColor: Theme.of(context).primaryColor,
-        overlayColor: Colors.black,
-        overlayOpacity: 0.4,
-        children: [
-          SpeedDialChild(
-              label: "Delivereds Last",
-              child: Icon(
-                Icons.arrow_downward,
-                color: Theme.of(context).primaryColor,
-              ),
-              backgroundColor: Colors.white,
-              onTap: () {
-                // _ordersBloc.setSortCriteria(SortCriteria.DELIVERED_LAST);
-                OrdersBloc().setSortCriteria(SortCriteria.DELIVERED_FIRST);
-              }),
-          SpeedDialChild(
-              label: "Delivereds First",
-              child: Icon(
-                Icons.arrow_upward,
-                color: Theme.of(context).primaryColor,
-              ),
-              backgroundColor: Colors.white,
-              onTap: () {
-                // _ordersBloc.setSortCriteria(SortCriteria.DELIVERED_FIRST);
-                OrdersBloc().setSortCriteria(SortCriteria.DELIVERED_FIRST);
-              }),
-        ],
-      );
-    }
-    return null;
-  }
 }

@@ -46,14 +46,16 @@ class UsersTab extends StatelessWidget {
                 );
               } else {
                 // TODO: Corrigir a criação da lista, esta crianco com base no número de usuários e não de usuários com compras
-                return ListView.separated(
-                  itemBuilder: (context, index) {
-                    return UserTile(snapshot.data![index]);
-                  },
-                  separatorBuilder: (context, index) => const Divider(),
-                  itemCount: snapshot.data!.length,
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
+                return Expanded(
+                  child: ListView.separated(
+                    itemBuilder: (context, index) {
+                      return UserTile(snapshot.data![index]);
+                    },
+                    separatorBuilder: (context, index) => const Divider(),
+                    itemCount: snapshot.data!.length,
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                  ),
                 );
               }
             })
