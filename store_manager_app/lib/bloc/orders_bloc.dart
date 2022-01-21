@@ -18,22 +18,44 @@ class OrdersBloc extends BlocBase {
   }
 
   void _addOrdersListener() {
-    _firestore.collection('orders').snapshots().listen((snapshot) { 
-      
+    _firestore.collection('orders').snapshots().listen((snapshot) {
       snapshot.docChanges.forEach((change) {
         String oid = change.doc.id;
-        if(change.type == DocumentChangeType.added){
+        if (change.type == DocumentChangeType.added) {
           _orders.add(change.doc);
-        }else if(change.type == DocumentChangeType.modified){
+        } else if (change.type == DocumentChangeType.modified) {
           _orders.removeWhere((order) => order.id == oid);
           _orders.add(change.doc);
-        }else if(change.type == DocumentChangeType.removed){
+        } else if (change.type == DocumentChangeType.removed) {
           _orders.removeWhere((order) => order.id == oid);
         }
-       });
-    _ordersController.add(_orders);
+      });
+      _ordersController.add(_orders);
     });
+  }
 
+  void forwardStatus(DocumentSnapshot order) {
+    _firestore
+        .collection('orders')
+        .doc(order.id)
+        .update({"status": order.get('status') + 1});
+  }
+
+  void backwardStatus(DocumentSnapshot order) {
+    _firestore
+        .collection('orders')
+        .doc(order.id)
+        .update({"status": order.get('status') - 1});
+  }
+
+  void deleteOrder(String oid, String userId) {
+    _firestore.collection('orders').doc(oid).delete();
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('orders')
+        .doc(oid)
+        .delete();
   }
 
   @override
