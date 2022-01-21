@@ -18,6 +18,8 @@ class OrderTile extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: Card(
         child: ExpansionTile(
+          key: Key(order.id),
+          initiallyExpanded: order.get('status') == 4 ? false : true,
           title: Text(
             "${order.id.substring(order.id.length - 7)} - ${status[order.get('status')]}",
             style: TextStyle(color: Colors.green),
