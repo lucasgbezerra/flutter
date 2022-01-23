@@ -42,6 +42,7 @@ dependencies:
   flutter_speed_dial: ^5.0.0+1
   image_picker: ^0.8.4+4
   image_cropper: ^1.4.1
+  firebase_storage: ^10.2.5
 
 dev_dependencies:
   flutter_test:

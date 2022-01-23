@@ -12,8 +12,9 @@ class ProductsTab extends StatefulWidget {
 class _ProductsTabState extends State<ProductsTab> with AutomaticKeepAliveClientMixin{
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<QuerySnapshot>(
-      future: FirebaseFirestore.instance.collection('produtos').get(),
+    super.build(context);
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('produtos').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(

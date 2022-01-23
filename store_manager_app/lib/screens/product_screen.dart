@@ -5,18 +5,28 @@ import 'package:store_manager_app/validators/product_validator.dart';
 import 'package:store_manager_app/widgets/images_widget.dart';
 import 'package:store_manager_app/widgets/product_sizes_widget.dart';
 
-class ProductScreen extends StatelessWidget with ProductValidator {
+class ProductScreen extends StatefulWidget with ProductValidator {
   final String categoryId;
   final DocumentSnapshot? product;
 
+  ProductScreen({Key? key, required this.categoryId, this.product})
+      : super(key: key);
+
+  @override
+  State<ProductScreen> createState() =>
+      _ProductScreenState(categoryId, product);
+}
+
+class _ProductScreenState extends State<ProductScreen> with ProductValidator {
   final _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final ProductBloc _productBloc;
 
-  ProductScreen({Key? key, required this.categoryId, this.product})
+  _ProductScreenState(String categoryId, DocumentSnapshot? product)
       : _productBloc = ProductBloc(
             categoryId: categoryId,
-            product: product as DocumentSnapshot<Map<String, dynamic>>?),
-        super(key: key);
+            product: product as DocumentSnapshot<Map<String, dynamic>>?);
 
   @override
   Widget build(BuildContext context) {
@@ -33,87 +43,161 @@ class ProductScreen extends StatelessWidget with ProductValidator {
     }
 
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: Text(
-          'New Product',
-          style: TextStyle(color: Colors.white),
-        ),
-        centerTitle: true,
+        title: StreamBuilder<bool>(
+            stream: _productBloc.outCreated,
+            initialData: false,
+            builder: (context, snapshot) {
+              return Text(
+                snapshot.data! ? 'Edit Product' : 'New Product',
+                style: TextStyle(color: Colors.white),
+              );
+            }),
+        // centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.delete),
-          ),
-          IconButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-              }
-            },
-            icon: Icon(Icons.save),
-          ),
+          StreamBuilder<bool>(
+              stream: _productBloc.outCreated,
+              initialData: false,
+              builder: (context, snapshot) {
+                if (snapshot.data!) {
+                  return StreamBuilder<bool>(
+                      stream: _productBloc.outLoading,
+                      initialData: false,
+                      builder: (context, snapshot) {
+                        return IconButton(
+                          onPressed: snapshot.data!
+                              ? null
+                              : () {
+                                  _productBloc.deleteProduct();
+                                  Navigator.of(context).pop();
+                                },
+                          icon: Icon(Icons.delete),
+                        );
+                      });
+                } else {
+                  return Container();
+                }
+              }),
+          StreamBuilder<bool>(
+              stream: _productBloc.outLoading,
+              initialData: false,
+              builder: (context, snapshot) {
+                return IconButton(
+                  onPressed: snapshot.data! ? null : saveProduct,
+                  icon: Icon(Icons.save),
+                );
+              }),
         ],
       ),
       backgroundColor: Theme.of(context).backgroundColor,
-      body: Form(
-        key: _formKey,
-        child: StreamBuilder<Map>(
-            stream: _productBloc.outData,
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) return Container();
-              return ListView(
-                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                children: [
-                  Text(
-                    "Images",
-                    style: TextStyle(color: Colors.white, fontSize: 12),
+      body: Stack(
+        children: [
+          Form(
+            key: _formKey,
+            child: StreamBuilder<Map>(
+                stream: _productBloc.outData,
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) return Container();
+                  return ListView(
+                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    children: [
+                      Text(
+                        "Images",
+                        style: TextStyle(color: Colors.white, fontSize: 12),
+                      ),
+                      ImagesWidget(
+                        context: context,
+                        initialValue: snapshot.data!['images'],
+                        onSaved: _productBloc.saveImages,
+                        validator: validateImages,
+                      ),
+                      TextFormField(
+                        style: _textFormFieldStyle,
+                        initialValue: snapshot.data!['title'],
+                        decoration: _buildDecoration("Title"),
+                        onSaved: _productBloc.saveTitle,
+                        validator: validateTitle,
+                      ),
+                      TextFormField(
+                        style: _textFormFieldStyle,
+                        maxLines: 6,
+                        initialValue: snapshot.data!['description'],
+                        decoration: _buildDecoration("Description"),
+                        onSaved: _productBloc.saveDescription,
+                        validator: validateDescription,
+                      ),
+                      TextFormField(
+                        style: _textFormFieldStyle,
+                        initialValue:
+                            snapshot.data!['price']?.toStringAsFixed(2),
+                        decoration: _buildDecoration("Price"),
+                        keyboardType:
+                            TextInputType.numberWithOptions(decimal: true),
+                        onSaved: _productBloc.savePrice,
+                        validator: validatePrice,
+                      ),
+                      SizedBox(height: 16),
+                      Text(
+                        "Sizes",
+                        style: TextStyle(color: Colors.white, fontSize: 12),
+                      ),
+                      ProductSizesWidget(
+                          context: context,
+                          initialValue: snapshot.data!['sizes'],
+                          onSaved: _productBloc.saveSizes,
+                          validator: validateSizes)
+                    ],
+                  );
+                }),
+          ),
+          StreamBuilder<bool>(
+              stream: _productBloc.outLoading,
+              initialData: false,
+              builder: (context, snapshot) {
+                return IgnorePointer(
+                  ignoring: !snapshot.data!,
+                  child: Container(
+                    color: snapshot.data! ? Colors.black54 : Colors.transparent,
                   ),
-                  ImagesWidget(
-                    context: context,
-                    initialValue: snapshot.data!['images'],
-                    onSaved: _productBloc.saveImages,
-                    validator: validateImages,
-                  ),
-                  TextFormField(
-                    style: _textFormFieldStyle,
-                    initialValue: snapshot.data!['title'],
-                    decoration: _buildDecoration("Title"),
-                    onSaved: _productBloc.saveTitle,
-                    validator: validateTitle,
-                  ),
-                  TextFormField(
-                    style: _textFormFieldStyle,
-                    maxLines: 6,
-                    initialValue: snapshot.data!['description'],
-                    decoration: _buildDecoration("Description"),
-                    onSaved: _productBloc.saveDescription,
-                    validator: validateDescription,
-                  ),
-                  TextFormField(
-                    style: _textFormFieldStyle,
-                    initialValue: snapshot.data!['price']?.toStringAsFixed(2),
-                    decoration: _buildDecoration("Price"),
-                    keyboardType:
-                        TextInputType.numberWithOptions(decimal: true),
-                    onSaved: _productBloc.savePrice,
-                    validator: validatePrice,
-                  ),
-                  SizedBox(height: 16),
-                  Text(
-                    "Sizes",
-                    style: TextStyle(color: Colors.white, fontSize: 12),
-                  ),
-                  ProductSizesWidget(
-                    context: context,
-                    initialValue: snapshot.data!['sizes'],
-                    onSaved: _productBloc.saveSizes,
-                    validator: validateSizes
-                  )
-                ],
-              );
-            }),
+                );
+              })
+        ],
       ),
     );
+  }
+
+  void saveProduct() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Theme.of(context).primaryColor,
+          content: Text(
+            "Saving product...",
+            style: TextStyle(color: Colors.white),
+          ),
+          duration: Duration(minutes: 1),
+        ),
+      );
+
+      bool success = await _productBloc.saveProduct();
+
+      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Theme.of(context).primaryColor,
+          content: Text(
+            success
+                ? "Product has been saved sucessfully."
+                : "Failed to save product.",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      );
+    }
   }
 }

@@ -16,7 +16,6 @@ class ProductValidator {
   }
 
   String? validatePrice(String? price) {
-    print(price);
     if (price == null || price.isEmpty)
       return "Price field is required.";
     else if (!price.contains(".") || price.split(".")[1].length != 2)
