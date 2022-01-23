@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:store_manager_app/bloc/product_bloc.dart';
-import 'package:store_manager_app/widget/images_widget.dart';
+import 'package:store_manager_app/validators/product_validator.dart';
+import 'package:store_manager_app/widgets/images_widget.dart';
 
-class ProductScreen extends StatelessWidget {
+class ProductScreen extends StatelessWidget with ProductValidator {
   final String categoryId;
   final DocumentSnapshot? product;
 
@@ -44,7 +45,11 @@ class ProductScreen extends StatelessWidget {
             icon: Icon(Icons.delete),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              if(_formKey.currentState!.validate()){
+                _formKey.currentState!.save();
+              }
+            },
             icon: Icon(Icons.save),
           ),
         ],
@@ -66,23 +71,23 @@ class ProductScreen extends StatelessWidget {
                     ImagesWidget(
                       context: context,
                       initialValue: snapshot.data!['images'],
-                      validator: (images) {},
-                      onSaved: (images) {},
+                      onSaved: _productBloc.saveImages,
+                      validator: validateImages,
                     ),
                     TextFormField(
                       style: _textFormFieldStyle,
                       initialValue: snapshot.data!['title'],
                       decoration: _buildDecoration("Title"),
-                      onSaved: (text) {},
-                      validator: (text) {},
+                      onSaved: _productBloc.saveTitle,
+                      validator: validateTitle,
                     ),
                     TextFormField(
                       style: _textFormFieldStyle,
                       maxLines: 6,
                       initialValue: snapshot.data!['description'],
                       decoration: _buildDecoration("Description"),
-                      onSaved: (text) {},
-                      validator: (text) {},
+                      onSaved: _productBloc.saveDescription,
+                      validator: validateDescription,
                     ),
                     TextFormField(
                       style: _textFormFieldStyle,
@@ -90,8 +95,8 @@ class ProductScreen extends StatelessWidget {
                       decoration: _buildDecoration("Price"),
                       keyboardType:
                           TextInputType.numberWithOptions(decimal: true),
-                      onSaved: (text) {},
-                      validator: (text) {},
+                      onSaved: _productBloc.savePrice,
+                      validator: validatePrice,
                     )
                   ],
                 );

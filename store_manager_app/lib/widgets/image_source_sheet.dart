@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ImageSourceSheet extends StatelessWidget {
   final Function(File) onImageSelected;
@@ -35,11 +36,9 @@ class ImageSourceSheet extends StatelessWidget {
               onPressed: () async {
                 // Selecionando imagem com o package
                 final imagePicker = ImagePicker();
-                //TODO : Fix imagePicker erro
                 XFile? image =
                     await imagePicker.pickImage(source: ImageSource.gallery);
                 _imageSelectedImage(image);
-
               },
             )
           ],

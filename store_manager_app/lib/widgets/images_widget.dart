@@ -16,6 +16,7 @@ class ImagesWidget extends FormField<List> {
             validator: validator,
             builder: (state) {
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     height: 124,
@@ -60,6 +61,7 @@ class ImagesWidget extends FormField<List> {
                                 onImageSelected: (image){
                                   state.value!.add(image);
                                   state.didChange(state.value);
+                                  Navigator.of(context).pop();
                                 },
                               ));
                             },
