@@ -52,6 +52,8 @@ dev_dependencies:
   firebase_core: ^1.11.0
   shimmer: ^2.0.0
   flutter_speed_dial: ^5.0.0+1
+  image_picker: ^0.8.4+4
+  image_cropper: ^1.4.1
 
 
 # For information on the generic Dart part of this file, see the

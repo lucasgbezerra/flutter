@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:store_manager_app/bloc/product_bloc.dart';
+import 'package:store_manager_app/widget/images_widget.dart';
 
 class ProductScreen extends StatelessWidget {
   final String categoryId;
@@ -58,8 +59,17 @@ class ProductScreen extends StatelessWidget {
                 return ListView(
                   padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   children: [
+                    Text(
+                      "Images",
+                      style: TextStyle(color: Colors.white, fontSize: 12),
+                    ),
+                    ImagesWidget(
+                      context: context,
+                      initialValue: snapshot.data!['images'],
+                      validator: (images) {},
+                      onSaved: (images) {},
+                    ),
                     TextFormField(
-
                       style: _textFormFieldStyle,
                       initialValue: snapshot.data!['title'],
                       decoration: _buildDecoration("Title"),
