@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:store_manager_app/bloc/product_bloc.dart';
 import 'package:store_manager_app/validators/product_validator.dart';
 import 'package:store_manager_app/widgets/images_widget.dart';
+import 'package:store_manager_app/widgets/product_sizes_widget.dart';
 
 class ProductScreen extends StatelessWidget with ProductValidator {
   final String categoryId;
@@ -46,7 +47,7 @@ class ProductScreen extends StatelessWidget with ProductValidator {
           ),
           IconButton(
             onPressed: () {
-              if(_formKey.currentState!.validate()){
+              if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
               }
             },
@@ -56,51 +57,63 @@ class ProductScreen extends StatelessWidget with ProductValidator {
       ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Form(
-          key: _formKey,
-          child: StreamBuilder<Map>(
-              stream: _productBloc.outData,
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) return Container();
-                return ListView(
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                  children: [
-                    Text(
-                      "Images",
-                      style: TextStyle(color: Colors.white, fontSize: 12),
-                    ),
-                    ImagesWidget(
-                      context: context,
-                      initialValue: snapshot.data!['images'],
-                      onSaved: _productBloc.saveImages,
-                      validator: validateImages,
-                    ),
-                    TextFormField(
-                      style: _textFormFieldStyle,
-                      initialValue: snapshot.data!['title'],
-                      decoration: _buildDecoration("Title"),
-                      onSaved: _productBloc.saveTitle,
-                      validator: validateTitle,
-                    ),
-                    TextFormField(
-                      style: _textFormFieldStyle,
-                      maxLines: 6,
-                      initialValue: snapshot.data!['description'],
-                      decoration: _buildDecoration("Description"),
-                      onSaved: _productBloc.saveDescription,
-                      validator: validateDescription,
-                    ),
-                    TextFormField(
-                      style: _textFormFieldStyle,
-                      initialValue: snapshot.data!['price']?.toStringAsFixed(2),
-                      decoration: _buildDecoration("Price"),
-                      keyboardType:
-                          TextInputType.numberWithOptions(decimal: true),
-                      onSaved: _productBloc.savePrice,
-                      validator: validatePrice,
-                    )
-                  ],
-                );
-              })),
+        key: _formKey,
+        child: StreamBuilder<Map>(
+            stream: _productBloc.outData,
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return Container();
+              return ListView(
+                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                children: [
+                  Text(
+                    "Images",
+                    style: TextStyle(color: Colors.white, fontSize: 12),
+                  ),
+                  ImagesWidget(
+                    context: context,
+                    initialValue: snapshot.data!['images'],
+                    onSaved: _productBloc.saveImages,
+                    validator: validateImages,
+                  ),
+                  TextFormField(
+                    style: _textFormFieldStyle,
+                    initialValue: snapshot.data!['title'],
+                    decoration: _buildDecoration("Title"),
+                    onSaved: _productBloc.saveTitle,
+                    validator: validateTitle,
+                  ),
+                  TextFormField(
+                    style: _textFormFieldStyle,
+                    maxLines: 6,
+                    initialValue: snapshot.data!['description'],
+                    decoration: _buildDecoration("Description"),
+                    onSaved: _productBloc.saveDescription,
+                    validator: validateDescription,
+                  ),
+                  TextFormField(
+                    style: _textFormFieldStyle,
+                    initialValue: snapshot.data!['price']?.toStringAsFixed(2),
+                    decoration: _buildDecoration("Price"),
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    onSaved: _productBloc.savePrice,
+                    validator: validatePrice,
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    "Sizes",
+                    style: TextStyle(color: Colors.white, fontSize: 12),
+                  ),
+                  ProductSizesWidget(
+                    context: context,
+                    initialValue: snapshot.data!['sizes'],
+                    onSaved: _productBloc.saveSizes,
+                    validator: validateSizes
+                  )
+                ],
+              );
+            }),
+      ),
     );
   }
 }

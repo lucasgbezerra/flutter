@@ -10,15 +10,22 @@ class ProductValidator {
   }
 
   String? validateDescription(String? description) {
-    if (description == null || description.isEmpty) return "Description field is required.";
+    if (description == null || description.isEmpty)
+      return "Description field is required.";
     return null;
   }
 
   String? validatePrice(String? price) {
+    print(price);
     if (price == null || price.isEmpty)
       return "Price field is required.";
     else if (!price.contains(".") || price.split(".")[1].length != 2)
       return "Invalid price.";
+    return null;
+  }
+
+  String? validateSizes(List? sizes) {
+    if (sizes == null || sizes.isEmpty) return "Add size to product";
     return null;
   }
 }
