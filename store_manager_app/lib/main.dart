@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
           primaryColorLight: const Color(0xFF8075FF),
           backgroundColor: const Color(0xFF616161),
         ),
+        debugShowCheckedModeBanner: false,
         home: LoginScreen());
   }
 }

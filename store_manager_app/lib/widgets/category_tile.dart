@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:store_manager_app/screens/product_screen.dart';
 
 class CategoryTile extends StatelessWidget {
   final DocumentSnapshot category;
@@ -37,17 +38,38 @@ class CategoryTile extends StatelessWidget {
                             backgroundColor: Colors.transparent,
                             child: Image.network("${doc.get('images')[0]}"),
                           ),
-                          title: Text("${doc.get('title')}", ),
-                          trailing: Text("\$${doc.get('price').toStringAsFixed(2)}"),
-                          onTap: (){},
+                          title: Text(
+                            "${doc.get('title')}",
+                          ),
+                          trailing:
+                              Text("\$${doc.get('price').toStringAsFixed(2)}"),
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ProductScreen(
+                                    categoryId: category.id, product: doc),
+                              ),
+                            );
+                          },
                         );
-                      }).toList()..add(ListTile(
-                        title: Text("Add",),
-                        leading: Icon(Icons.add, color: Theme.of(context).primaryColor,),
-                        onTap: (){
-
-                        },
-                      )),
+                      }).toList()
+                        ..add(ListTile(
+                          title: Text(
+                            "Add",
+                          ),
+                          leading: Icon(
+                            Icons.add,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    ProductScreen(categoryId: category.id),
+                              ),
+                            );
+                          },
+                        )),
                     );
                   }
                 }),
