@@ -1,13 +1,13 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:store_manager_app/bloc/category_bloc.dart';
+import 'package:store_manager_app/widgets/image_source_sheet.dart';
 
 class EditCategoryDialog extends StatefulWidget {
   final DocumentSnapshot? category;
 
-  EditCategoryDialog({this.category ,Key? key}) : super(key: key);
+  EditCategoryDialog({this.category, Key? key}) : super(key: key);
 
   @override
   State<EditCategoryDialog> createState() => _EditCategoryDialogState(category);
@@ -29,28 +29,48 @@ class _EditCategoryDialogState extends State<EditCategoryDialog> {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: StreamBuilder(
-                  stream: _categoryBloc.outImage,
-                  builder: (context, snapshot) {
-                    if (snapshot.data != null)
-                      return CircleAvatar(
-                        child: snapshot.data is String
-                            ? Image.network(
-                                "${snapshot.data!}",
-                                fit: BoxFit.cover,
-                              )
-                            : Image.file(
-                                snapshot.data! as File,
-                                fit: BoxFit.cover,
-                              ),
-                        backgroundColor: Colors.transparent,
-                      );
-                    else
-                      return Icon(Icons.image);
-                  }),
-              title: TextField(
-                controller: _textController,
+              leading: GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) =>
+                        ImageSourceSheet(onImageSelected: (image) {
+                      Navigator.of(context).pop();
+                      _categoryBloc.setImage(image);
+                    }),
+                  );
+                },
+                child: StreamBuilder(
+                    stream: _categoryBloc.outImage,
+                    builder: (context, snapshot) {
+                      if (snapshot.data != null)
+                        return CircleAvatar(
+                          child: snapshot.data is String
+                              ? Image.network(
+                                  "${snapshot.data!}",
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.file(
+                                  snapshot.data! as File,
+                                  fit: BoxFit.cover,
+                                ),
+                          backgroundColor: Colors.transparent,
+                        );
+                      else
+                        return Icon(Icons.image);
+                    }),
               ),
+              title: StreamBuilder<String>(
+                  stream: _categoryBloc.outTitle,
+                  builder: (context, snapshot) {
+                    return TextField(
+                      controller: _textController,
+                      decoration: InputDecoration(
+                        errorText: snapshot.hasError ? snapshot.error.toString() : null,
+                      ),
+                      onChanged: _categoryBloc.setTitle,
+                    );
+                  }),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -68,12 +88,14 @@ class _EditCategoryDialogState extends State<EditCategoryDialog> {
                         ),
                       );
                     }),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Save",
-                  ),
-                )
+                StreamBuilder<bool>(
+                    stream: _categoryBloc.outSubmitedValid,
+                    builder: (context, snapshot) {
+                      return TextButton(
+                        onPressed: snapshot.hasData ? () {} : null,
+                        child: Text("Save"),
+                      );
+                    })
               ],
             )
           ],
