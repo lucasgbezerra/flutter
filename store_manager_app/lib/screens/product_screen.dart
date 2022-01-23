@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:store_manager_app/bloc/product_bloc.dart';
 import 'package:store_manager_app/validators/product_validator.dart';
+import 'package:store_manager_app/widgets/edit_category_dialog.dart';
 import 'package:store_manager_app/widgets/images_widget.dart';
 import 'package:store_manager_app/widgets/product_sizes_widget.dart';
 
