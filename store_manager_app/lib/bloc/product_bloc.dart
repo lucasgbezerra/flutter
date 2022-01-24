@@ -70,7 +70,7 @@ class ProductBloc extends BlocBase {
       } else {
         // Criar um doc do produto sem as imagens para obter o doc_id necessário pra add imagens
         Map<String, dynamic> unsavedDataNoImage = Map.from(unsavedData);
-        unsavedDataNoImage.remove('images');
+        unsavedDataNoImage['images'] = [];
         DocumentReference docRef = await FirebaseFirestore.instance
             .collection('produtos')
             .doc(categoryId)

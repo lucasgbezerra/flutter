@@ -35,8 +35,8 @@ class CategoryTile extends StatelessWidget {
             ),
           ),
           children: [
-            FutureBuilder<QuerySnapshot>(
-                future: category.reference.collection('items').get(),
+            StreamBuilder<QuerySnapshot>(
+                stream: category.reference.collection('items').snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return Container();
@@ -46,7 +46,7 @@ class CategoryTile extends StatelessWidget {
                         return ListTile(
                           leading: CircleAvatar(
                             backgroundColor: Colors.transparent,
-                            child: Image.network("${doc.get('images')[0]}"),
+                            child: doc.get('images').length != 0 ? Image.network("${doc.get('images')[0]}") : const Icon(Icons.image),
                           ),
                           title: Text(
                             "${doc.get('title')}",
