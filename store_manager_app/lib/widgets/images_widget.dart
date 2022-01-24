@@ -3,13 +3,14 @@ import 'package:store_manager_app/widgets/image_source_sheet.dart';
 
 class ImagesWidget extends FormField<List> {
   ImagesWidget(
-      {
+      {Key? key,
       required BuildContext context,
       required List initialValue,
       autoValidate = AutovalidateMode.disabled,
       required FormFieldSetter<List> onSaved,
       required FormFieldValidator<List> validator})
       : super(
+            key: key,
             initialValue: initialValue,
             autovalidateMode: autoValidate,
             onSaved: onSaved,
@@ -20,14 +21,14 @@ class ImagesWidget extends FormField<List> {
                 children: [
                   Container(
                     height: 124,
-                    padding: EdgeInsets.only(top: 16, bottom: 8),
+                    padding: const EdgeInsets.only(top: 16, bottom: 8),
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: state.value!.map<Widget>((image) {
                         return Container(
                           height: 100,
                           width: 100,
-                          margin: EdgeInsets.only(right: 8),
+                          margin: const EdgeInsets.only(right: 8),
                           child: GestureDetector(
                             child: image is String
                                 ? Image.network(
@@ -50,20 +51,22 @@ class ImagesWidget extends FormField<List> {
                             child: Container(
                               height: 100,
                               width: 100,
-                              child: Icon(
+                              child: const Icon(
                                 Icons.camera_alt,
                                 color: Colors.white,
                               ),
                               color: Colors.white.withOpacity(0.5),
                             ),
-                            onTap: (){
-                              showModalBottomSheet(context: context, builder: (context) => ImageSourceSheet(
-                                onImageSelected: (image){
-                                  state.value!.add(image);
-                                  state.didChange(state.value);
-                                  Navigator.of(context).pop();
-                                },
-                              ));
+                            onTap: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => ImageSourceSheet(
+                                        onImageSelected: (image) {
+                                          state.value!.add(image);
+                                          state.didChange(state.value);
+                                          Navigator.of(context).pop();
+                                        },
+                                      ));
                             },
                           ),
                         ),
@@ -72,7 +75,7 @@ class ImagesWidget extends FormField<List> {
                   state.hasError
                       ? Text(
                           state.errorText!,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.red,
                             fontSize: 12,
                           ),

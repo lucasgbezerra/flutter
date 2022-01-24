@@ -10,16 +10,18 @@ class ProductValidator {
   }
 
   String? validateDescription(String? description) {
-    if (description == null || description.isEmpty)
+    if (description == null || description.isEmpty) {
       return "Description field is required.";
+    }
     return null;
   }
 
   String? validatePrice(String? price) {
-    if (price == null || price.isEmpty)
+    if (price == null || price.isEmpty) {
       return "Price field is required.";
-    else if (!price.contains(".") || price.split(".")[1].length != 2)
+    } else if (!price.contains(".") || price.split(".")[1].length != 2) {
       return "Invalid price.";
+    }
     return null;
   }
 

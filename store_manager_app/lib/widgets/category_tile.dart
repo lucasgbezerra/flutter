@@ -10,13 +10,16 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       color: Colors.white,
       child: ExpansionTile(
           leading: GestureDetector(
             onTap: () {
               showDialog(
-                  context: context, builder: (context) => EditCategoryDialog(category: category,));
+                  context: context,
+                  builder: (context) => EditCategoryDialog(
+                        category: category,
+                      ));
             },
             child: CircleAvatar(
               backgroundColor: Colors.transparent,
@@ -27,7 +30,7 @@ class CategoryTile extends StatelessWidget {
           ),
           title: Text(
             category.get('title'),
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -61,7 +64,7 @@ class CategoryTile extends StatelessWidget {
                         );
                       }).toList()
                         ..add(ListTile(
-                          title: Text(
+                          title: const Text(
                             "Add",
                           ),
                           leading: Icon(

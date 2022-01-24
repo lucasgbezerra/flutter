@@ -20,12 +20,12 @@ class _LoginScreenState extends State<LoginScreen> {
       switch (state) {
         case LoginState.SUCCESS:
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => HomeScreen()));
+              MaterialPageRoute(builder: (context) => const HomeScreen()));
           break;
         case LoginState.FAIL:
           showDialog(
               context: context,
-              builder: (context) => AlertDialog(
+              builder: (context) => const AlertDialog(
                     title: Text("Error"),
                     content: Text("Fail Sing In."),
                   ));

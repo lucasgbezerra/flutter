@@ -31,7 +31,7 @@ class ImageSourceSheet extends StatelessWidget {
               },
             ),
             IconButton(
-              icon: Icon(Icons.collections),
+              icon: const Icon(Icons.collections),
               color: Theme.of(context).primaryColor,
               onPressed: () async {
                 // Selecionando imagem com o package
@@ -52,7 +52,7 @@ class ImageSourceSheet extends StatelessWidget {
     if (image != null) {
       File? croppedImage = await ImageCropper.cropImage(
         sourcePath: image.path,
-        aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0),
+        aspectRatio: const CropAspectRatio(ratioX: 1.0, ratioY: 1.0),
       );
       onImageSelected(croppedImage!);
     }

@@ -14,14 +14,15 @@ class CategoryBloc extends BlocBase {
   Stream<String> get outTitle => _titleController.stream.transform(
           StreamTransformer<String, String>.fromHandlers(
               handleData: (title, sink) {
-        if (title.isEmpty)
+        if (title.isEmpty) {
           sink.addError("Title field cannot be empty.");
-        else
+        } else {
           sink.add(title);
+        }
       }));
   Stream get outImage => _imageController.stream;
   Stream<bool> get outDelete => _deleteController.stream;
-   Stream<bool> get outSubmitedValid => Rx.combineLatest2(
+  Stream<bool> get outSubmitedValid => Rx.combineLatest2(
         outTitle,
         outImage,
         (a, b) => true,
@@ -51,12 +52,14 @@ class CategoryBloc extends BlocBase {
     _titleController.add(title);
   }
 
-  Future saveData() async{
-    if(image == null &&category != null && category?.get('title') == title) return;
+  Future saveData() async {
+    if (image == null && category != null && category?.get('title') == title) {
+      return;
+    }
 
     Map<String, String> dataToUpdate = {};
 
-    if(image != null){
+    if (image != null) {
       UploadTask uploadTask = FirebaseStorage.instance
           .ref()
           .child('icons')
@@ -66,23 +69,27 @@ class CategoryBloc extends BlocBase {
       String downloadUrl = await uploadTask.then((s) async {
         return s.ref.getDownloadURL();
       });
-       dataToUpdate['image'] = downloadUrl;
-
+      dataToUpdate['image'] = downloadUrl;
     }
 
-    if(category == null || title != category?.get('title')){
+    if (category == null || title != category?.get('title')) {
       dataToUpdate['title'] = title!;
       // Categoria não existe, criar uma nova
-      if(category == null){
-        await FirebaseFirestore.instance.collection('produtos').doc(title).set(dataToUpdate);
-      }else{
+      if (category == null) {
+        await FirebaseFirestore.instance
+            .collection('produtos')
+            .doc(title)
+            .set(dataToUpdate);
+      } else {
         await category!.reference.update(dataToUpdate);
       }
     }
   }
-  void delete(){
+
+  void delete() {
     category?.reference.delete();
   }
+
   @override
   void dispose() {
     _titleController.close();

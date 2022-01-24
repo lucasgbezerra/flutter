@@ -39,7 +39,6 @@ class ProductBloc extends BlocBase {
   }
 
   void saveImages(List? images) {
-    print(images?.length);
     if (images != null) unsavedData['images'] = images;
   }
 

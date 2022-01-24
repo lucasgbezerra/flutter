@@ -15,14 +15,14 @@ class OrderTile extends StatelessWidget {
     final _ordersBloc = BlocProvider.getBloc<OrdersBloc>();
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: Card(
         child: ExpansionTile(
           key: Key(order.id),
           initiallyExpanded: order.get('status') == 4 ? false : true,
           title: Text(
             "${order.id.substring(order.id.length - 7)} - ${status[order.get('status')]}",
-            style: TextStyle(color: Colors.green),
+            style: const TextStyle(color: Colors.green),
           ),
           children: [
             Padding(
@@ -36,7 +36,7 @@ class OrderTile extends StatelessWidget {
                       return ListTile(
                         title: Text(
                           "${product['product']['title']} ${product['size']}",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         subtitle:
                             Text("${product['category']}/${product['pid']}"),
@@ -53,7 +53,8 @@ class OrderTile extends StatelessWidget {
                       Expanded(
                         child: TextButton(
                           onPressed: () {
-                            _ordersBloc.deleteOrder(order.id, order.get('clientId'));
+                            _ordersBloc.deleteOrder(
+                                order.id, order.get('clientId'));
                           },
                           child: const Text(
                             "Delete",
@@ -70,7 +71,10 @@ class OrderTile extends StatelessWidget {
                               : null,
                           child: Text(
                             "Backward",
-                            style: TextStyle(color:order.get('status') > 1 ? Colors.black : Colors.grey[400]),
+                            style: TextStyle(
+                                color: order.get('status') > 1
+                                    ? Colors.black
+                                    : Colors.grey[400]),
                           ),
                         ),
                       ),
@@ -83,7 +87,10 @@ class OrderTile extends StatelessWidget {
                               : null,
                           child: Text(
                             "Forward",
-                            style: TextStyle(color: order.get('status') < 4 ?Colors.green : Colors.grey[400]),
+                            style: TextStyle(
+                                color: order.get('status') < 4
+                                    ? Colors.green
+                                    : Colors.grey[400]),
                           ),
                         ),
                       ),

@@ -11,10 +11,10 @@ class UsersTab extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
           child: TextField(
-            style: TextStyle(color: Colors.white),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.white),
+            decoration: const InputDecoration(
               icon: Icon(
                 Icons.search,
                 color: Colors.white,
@@ -38,7 +38,7 @@ class UsersTab extends StatelessWidget {
                   ),
                 );
               } else if (snapshot.data!.isEmpty) {
-                return Center(
+                return const Center(
                   child: Text(
                     "No user found.",
                     style: TextStyle(color: Colors.white),

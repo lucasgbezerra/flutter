@@ -7,7 +7,7 @@ class UserTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _textStyle = const TextStyle(color: Colors.white);
+    const _textStyle = TextStyle(color: Colors.white);
     if (user.containsKey('moneySpended')) {
       return ListTile(
         title: Text(
@@ -34,7 +34,7 @@ class UserTile extends StatelessWidget {
       );
     } else {
       return Container(
-        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -45,7 +45,7 @@ class UserTile extends StatelessWidget {
               child: Shimmer.fromColors(
                   child: Container(
                     color: Colors.white,
-                    margin: EdgeInsets.symmetric(vertical: 4),
+                    margin: const EdgeInsets.symmetric(vertical: 4),
                   ),
                   baseColor: Color(Colors.grey[300]!.value),
                   highlightColor: Color(Colors.grey[100]!.value)),
@@ -57,7 +57,7 @@ class UserTile extends StatelessWidget {
               child: Shimmer.fromColors(
                   child: Container(
                     color: Colors.white,
-                    margin: EdgeInsets.symmetric(vertical: 4),
+                    margin: const EdgeInsets.symmetric(vertical: 4),
                   ),
                   baseColor: Color(Colors.grey[300]!.value),
                   highlightColor: Color(Colors.grey[100]!.value)),

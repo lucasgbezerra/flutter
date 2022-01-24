@@ -22,7 +22,7 @@ class OrdersBloc extends BlocBase {
 
   void _addOrdersListener() {
     _firestore.collection('orders').snapshots().listen((snapshot) {
-      snapshot.docChanges.forEach((change) {
+      for (var change in snapshot.docChanges) {
         String oid = change.doc.id;
         if (change.type == DocumentChangeType.added) {
           _orders.add(change.doc);
@@ -32,7 +32,7 @@ class OrdersBloc extends BlocBase {
         } else if (change.type == DocumentChangeType.removed) {
           _orders.removeWhere((order) => order.id == oid);
         }
-      });
+      }
       _ordersController.add(_orders);
     });
   }

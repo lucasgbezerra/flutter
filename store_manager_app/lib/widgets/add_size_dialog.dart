@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AddSizeDialog extends StatelessWidget {
-
   final _controller = TextEditingController();
   AddSizeDialog({Key? key}) : super(key: key);
 
@@ -9,7 +8,7 @@ class AddSizeDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
@@ -22,7 +21,6 @@ class AddSizeDialog extends StatelessWidget {
                 Navigator.of(context).pop(_controller.text);
               },
               child: Text(
-                
                 "Add",
                 style: TextStyle(color: Theme.of(context).primaryColor),
               ),

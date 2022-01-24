@@ -3,11 +3,13 @@ import 'package:store_manager_app/widgets/add_size_dialog.dart';
 
 class ProductSizesWidget extends FormField<List> {
   ProductSizesWidget({
+    Key? key,
     required BuildContext context,
     required List initialValue,
     required FormFieldSetter<List> onSaved,
     required FormFieldValidator<List> validator,
   }) : super(
+            key: key,
             initialValue: initialValue,
             validator: validator,
             builder: (state) {
@@ -17,13 +19,14 @@ class ProductSizesWidget extends FormField<List> {
                   SizedBox(
                     height: 34,
                     child: GridView(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         mainAxisSpacing: 8.0,
                         crossAxisCount: 1,
                         childAspectRatio: 0.5,
                       ),
                       scrollDirection: Axis.horizontal,
-                      padding: EdgeInsets.only(top: 4),
+                      padding: const EdgeInsets.only(top: 4),
                       children: state.value!.map((size) {
                         return GestureDetector(
                           onLongPress: () {
@@ -33,7 +36,7 @@ class ProductSizesWidget extends FormField<List> {
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(4)),
+                                  const BorderRadius.all(Radius.circular(4)),
                               border: Border.all(
                                 color: Theme.of(context).primaryColor,
                                 width: 2,
@@ -42,7 +45,7 @@ class ProductSizesWidget extends FormField<List> {
                             alignment: Alignment.center,
                             child: Text(
                               size,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                               ),
                             ),
@@ -62,7 +65,7 @@ class ProductSizesWidget extends FormField<List> {
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(4)),
+                                  const BorderRadius.all(Radius.circular(4)),
                               border: Border.all(
                                 color: state.hasError
                                     ? Colors.red
@@ -71,7 +74,7 @@ class ProductSizesWidget extends FormField<List> {
                               ),
                             ),
                             alignment: Alignment.center,
-                            child: Text(
+                            child: const Text(
                               "+",
                               style: TextStyle(
                                 color: Colors.white,
@@ -83,15 +86,15 @@ class ProductSizesWidget extends FormField<List> {
                   ),
                   state.hasError
                       ? Container(
-                        padding: EdgeInsets.only(top:2),
-                        child: Text(
+                          padding: const EdgeInsets.only(top: 2),
+                          child: Text(
                             state.errorText!,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.red,
                               fontSize: 12,
                             ),
                           ),
-                      )
+                        )
                       : Container()
                 ],
               );

@@ -23,6 +23,6 @@ class MyApp extends StatelessWidget {
           backgroundColor: const Color(0xFF616161),
         ),
         debugShowCheckedModeBanner: false,
-        home: LoginScreen());
+        home: const LoginScreen());
   }
 }

@@ -7,7 +7,7 @@ import 'package:store_manager_app/widgets/image_source_sheet.dart';
 class EditCategoryDialog extends StatefulWidget {
   final DocumentSnapshot? category;
 
-  EditCategoryDialog({this.category, Key? key}) : super(key: key);
+  const EditCategoryDialog({this.category, Key? key}) : super(key: key);
 
   @override
   State<EditCategoryDialog> createState() => _EditCategoryDialogState(category);
@@ -43,7 +43,7 @@ class _EditCategoryDialogState extends State<EditCategoryDialog> {
                 child: StreamBuilder(
                     stream: _categoryBloc.outImage,
                     builder: (context, snapshot) {
-                      if (snapshot.data != null)
+                      if (snapshot.data != null) {
                         return CircleAvatar(
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
@@ -53,8 +53,9 @@ class _EditCategoryDialogState extends State<EditCategoryDialog> {
                           ),
                           backgroundColor: Colors.transparent,
                         );
-                      else
-                        return Icon(Icons.image);
+                      } else {
+                        return const Icon(Icons.image);
+                      }
                     }),
               ),
               title: StreamBuilder<String>(
@@ -102,7 +103,7 @@ class _EditCategoryDialogState extends State<EditCategoryDialog> {
                                 Navigator.of(context).pop();
                               }
                             : null,
-                        child: Text("Save"),
+                        child: const Text("Save"),
                       );
                     })
               ],

@@ -5,7 +5,6 @@ import 'package:store_manager_app/tabs/orders_tab.dart';
 import 'package:store_manager_app/tabs/products_tab.dart';
 import 'package:store_manager_app/tabs/users_tab.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:store_manager_app/widgets/edit_category_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -31,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: BlocProvider(
           blocs: [Bloc((i) => UserBloc()), Bloc((i) => OrdersBloc())],
-          dependencies: [],
+          dependencies: const [],
           child: PageView(
             controller: _pageController,
             onPageChanged: (page) {
@@ -39,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 _pageIndex = page;
               });
             },
-            children: [
+            children: const [
               UsersTab(),
               OrdersTab(),
               ProductsTab(),
@@ -54,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: (item) {
           _pageController.animateToPage(
             item,
-            duration: Duration(microseconds: 500),
+            duration: const Duration(microseconds: 500),
             curve: Curves.ease,
           );
         },
@@ -86,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
               context: context, builder: (context) => EditCategoryDialog());
         },
         backgroundColor: Theme.of(context).primaryColor,
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       );
     }
     return null;

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:store_manager_app/bloc/product_bloc.dart';
 import 'package:store_manager_app/validators/product_validator.dart';
-import 'package:store_manager_app/widgets/edit_category_dialog.dart';
 import 'package:store_manager_app/widgets/images_widget.dart';
 import 'package:store_manager_app/widgets/product_sizes_widget.dart';
 
@@ -31,7 +30,7 @@ class _ProductScreenState extends State<ProductScreen> with ProductValidator {
 
   @override
   Widget build(BuildContext context) {
-    final _textFormFieldStyle = TextStyle(
+    const _textFormFieldStyle = TextStyle(
       color: Colors.white,
       fontSize: 16,
     );
@@ -39,7 +38,7 @@ class _ProductScreenState extends State<ProductScreen> with ProductValidator {
     InputDecoration _buildDecoration(String label) {
       return InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: Colors.grey),
+        labelStyle: const TextStyle(color: Colors.grey),
       );
     }
 
@@ -53,7 +52,7 @@ class _ProductScreenState extends State<ProductScreen> with ProductValidator {
             builder: (context, snapshot) {
               return Text(
                 snapshot.data! ? 'Edit Product' : 'New Product',
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               );
             }),
         // centerTitle: true,
@@ -74,7 +73,7 @@ class _ProductScreenState extends State<ProductScreen> with ProductValidator {
                                   _productBloc.deleteProduct();
                                   Navigator.of(context).pop();
                                 },
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                         );
                       });
                 } else {
@@ -87,7 +86,7 @@ class _ProductScreenState extends State<ProductScreen> with ProductValidator {
               builder: (context, snapshot) {
                 return IconButton(
                   onPressed: snapshot.data! ? null : saveProduct,
-                  icon: Icon(Icons.save),
+                  icon: const Icon(Icons.save),
                 );
               }),
         ],
@@ -102,9 +101,10 @@ class _ProductScreenState extends State<ProductScreen> with ProductValidator {
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) return Container();
                   return ListView(
-                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                     children: [
-                      Text(
+                      const Text(
                         "Images",
                         style: TextStyle(color: Colors.white, fontSize: 12),
                       ),
@@ -134,13 +134,13 @@ class _ProductScreenState extends State<ProductScreen> with ProductValidator {
                         initialValue:
                             snapshot.data!['price']?.toStringAsFixed(2),
                         decoration: _buildDecoration("Price"),
-                        keyboardType:
-                            TextInputType.numberWithOptions(decimal: true),
+                        keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true),
                         onSaved: _productBloc.savePrice,
                         validator: validatePrice,
                       ),
-                      SizedBox(height: 16),
-                      Text(
+                      const SizedBox(height: 16),
+                      const Text(
                         "Sizes",
                         style: TextStyle(color: Colors.white, fontSize: 12),
                       ),
@@ -176,11 +176,11 @@ class _ProductScreenState extends State<ProductScreen> with ProductValidator {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Theme.of(context).primaryColor,
-          content: Text(
+          content: const Text(
             "Saving product...",
             style: TextStyle(color: Colors.white),
           ),
-          duration: Duration(minutes: 1),
+          duration: const Duration(minutes: 1),
         ),
       );
 
@@ -195,7 +195,7 @@ class _ProductScreenState extends State<ProductScreen> with ProductValidator {
             success
                 ? "Product has been saved sucessfully."
                 : "Failed to save product.",
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
         ),
       );

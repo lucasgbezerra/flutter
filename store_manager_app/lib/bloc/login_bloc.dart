@@ -83,5 +83,6 @@ class LoginBloc extends BlocBase with LoginValidators {
     _passwordController.close();
     _stateController.close();
     _streamSubscription.cancel();
+    super.dispose();
   }
 }

@@ -37,7 +37,7 @@ class UserBloc extends BlocBase {
     //Stream da coleção de users
     _firestore.collection('users').snapshots().listen((snapshot) {
       // Para cada alteração, faça ...
-      snapshot.docChanges.forEach((change) {
+      for (var change in snapshot.docChanges) {
         String uid = change.doc.id;
 
         if (change.type == DocumentChangeType.added) {
@@ -54,7 +54,7 @@ class UserBloc extends BlocBase {
           _userController.add(_users.values.toList());
 
         }
-      });
+      }
     });
   }
 

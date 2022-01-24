@@ -12,7 +12,6 @@ class OrdersTab extends StatefulWidget {
 }
 
 class _OrdersTabState extends State<OrdersTab> {
-  
   @override
   Widget build(BuildContext context) {
     final _ordersBloc = BlocProvider.getBloc<OrdersBloc>();
@@ -32,7 +31,7 @@ class _OrdersTabState extends State<OrdersTab> {
                   ),
                 );
               } else if (snapshot.data!.isEmpty) {
-                return Center(
+                return const Center(
                   child: Text("No orders found."),
                 );
               } else {
@@ -50,34 +49,33 @@ class _OrdersTabState extends State<OrdersTab> {
   }
 
   Widget? _buildFloatingActionButton(OrdersBloc _ordersBloc) {
-      return SpeedDial(
-        icon: Icons.sort,
-        backgroundColor: Theme.of(context).primaryColor,
-        overlayColor: Colors.black,
-        overlayOpacity: 0.4,
-        children: [
-          SpeedDialChild(
-              label: "Delivereds Last",
-              child: Icon(
-                Icons.arrow_downward,
-                color: Theme.of(context).primaryColor,
-              ),
-              backgroundColor: Colors.white,
-              onTap: () {
-                _ordersBloc.setSortCriteria(SortCriteria.DELIVERED_LAST);
-              }),
-          SpeedDialChild(
-              label: "Delivereds First",
-              child: Icon(
-                Icons.arrow_upward,
-                color: Theme.of(context).primaryColor,
-              ),
-              backgroundColor: Colors.white,
-              onTap: () {
-                _ordersBloc.setSortCriteria(SortCriteria.DELIVERED_FIRST);
-              }),
-        ],
-      );
-
+    return SpeedDial(
+      icon: Icons.sort,
+      backgroundColor: Theme.of(context).primaryColor,
+      overlayColor: Colors.black,
+      overlayOpacity: 0.4,
+      children: [
+        SpeedDialChild(
+            label: "Delivereds Last",
+            child: Icon(
+              Icons.arrow_downward,
+              color: Theme.of(context).primaryColor,
+            ),
+            backgroundColor: Colors.white,
+            onTap: () {
+              _ordersBloc.setSortCriteria(SortCriteria.DELIVERED_LAST);
+            }),
+        SpeedDialChild(
+            label: "Delivereds First",
+            child: Icon(
+              Icons.arrow_upward,
+              color: Theme.of(context).primaryColor,
+            ),
+            backgroundColor: Colors.white,
+            onTap: () {
+              _ordersBloc.setSortCriteria(SortCriteria.DELIVERED_FIRST);
+            }),
+      ],
+    );
   }
 }
