@@ -45,15 +45,12 @@ class _EditCategoryDialogState extends State<EditCategoryDialog> {
                     builder: (context, snapshot) {
                       if (snapshot.data != null)
                         return CircleAvatar(
-                          child: snapshot.data is String
-                              ? Image.network(
-                                  "${snapshot.data!}",
-                                  fit: BoxFit.cover,
-                                )
-                              : Image.file(
-                                  snapshot.data! as File,
-                                  fit: BoxFit.cover,
-                                ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: snapshot.data is String
+                                ? Image.network(snapshot.data.toString())
+                                : Image.file(snapshot.data as File),
+                          ),
                           backgroundColor: Colors.transparent,
                         );
                       else
@@ -66,7 +63,9 @@ class _EditCategoryDialogState extends State<EditCategoryDialog> {
                     return TextField(
                       controller: _textController,
                       decoration: InputDecoration(
-                        errorText: snapshot.hasError ? snapshot.error.toString() : null,
+                        errorText: snapshot.hasError
+                            ? snapshot.error.toString()
+                            : null,
                       ),
                       onChanged: _categoryBloc.setTitle,
                     );
@@ -80,7 +79,12 @@ class _EditCategoryDialogState extends State<EditCategoryDialog> {
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) return Container();
                       return TextButton(
-                        onPressed: snapshot.data! ? () {} : null,
+                        onPressed: snapshot.data!
+                            ? () {
+                                _categoryBloc.delete();
+                                Navigator.of(context).pop();
+                              }
+                            : null,
                         child: Text(
                           "Delete",
                           style: TextStyle(
@@ -92,7 +96,12 @@ class _EditCategoryDialogState extends State<EditCategoryDialog> {
                     stream: _categoryBloc.outSubmitedValid,
                     builder: (context, snapshot) {
                       return TextButton(
-                        onPressed: snapshot.hasData ? () {} : null,
+                        onPressed: snapshot.hasData
+                            ? () async {
+                                await _categoryBloc.saveData();
+                                Navigator.of(context).pop();
+                              }
+                            : null,
                         child: Text("Save"),
                       );
                     })
