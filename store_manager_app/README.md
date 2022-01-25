@@ -21,7 +21,9 @@ Tabela de conteúdos
 
 ## 💻 Sobre o projeto
 
-Flutter's Store é um aplicativo de loja com funcionalidades básicas de todos os tipos de loja. O intuido do projeto é apenas obter conhecimento sobre o Framework Flutter, a linguagem dart e a plataforma Firebase.
+Store Manager App é um app de gerenciamento da Store's Flutter. A partir dele é possível adicionar/editar produtos e categorias, além de obter informações sobre as compras dos clientes e sobre os pedidos, podendo alterar o status dos pedidos.
+
+Esse app utiliza BLoC Pattern para gerencia de estados. Além disso contém alguns packages como shimmer, image_picker e os packages necessários para uso do firebase.
 
 ---
 
@@ -29,9 +31,16 @@ Flutter's Store é um aplicativo de loja com funcionalidades básicas de todos o
 
 ## 🎨 Layout
 
+<a href="https://i.imgur.com/mKFIziP.jpeg">
+  <img alt="Made by lucasgbezerra" src="https://i.imgur.com/mKFIziP.jpeg">
+</a>
 
 ### Mobile
 
+
+<a href="https://imgur.com/a/1Dp7PYd">
+  <img alt="Made by lucasgbezerra" src="https://imgur.com/a/1Dp7PYd">
+</a>
 
 ---
 
