@@ -73,10 +73,12 @@ class UserBloc extends BlocBase {
       for (DocumentSnapshot doc in orders.docs) {
         DocumentSnapshot order =
             await _firestore.collection('orders').doc(doc.id).get();
-
         if (order.data() == null) continue;
         moneySpended += order.get('totalPrice');
         _users[uid]!.addAll({"moneySpended": moneySpended, "orders": numOrders});
+      }
+      if(!_users[uid]!.containsKey("moneySpended")){
+        _users[uid]!.addAll({"moneySpended": 0.0, "orders": 0});
       }
       // Pega apenas a part de values do Map e transforma em uma lista;
       _userController.add(_users.values.toList());

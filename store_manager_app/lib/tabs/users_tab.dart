@@ -45,7 +45,6 @@ class UsersTab extends StatelessWidget {
                   ),
                 );
               } else {
-                // TODO: Corrigir a criação da lista, esta crianco com base no número de usuários e não de usuários com compras
                 return Expanded(
                   child: ListView.separated(
                     itemBuilder: (context, index) {
