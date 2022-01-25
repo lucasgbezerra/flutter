@@ -18,8 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Store manager',
         theme: ThemeData(
-          primaryColor: const Color(0xFF6320EE),
-          primaryColorLight: const Color(0xFF8075FF),
+          primaryColor: const Color.fromARGB(255, 211, 118, 130),
           backgroundColor: const Color(0xFF616161),
         ),
         debugShowCheckedModeBanner: false,

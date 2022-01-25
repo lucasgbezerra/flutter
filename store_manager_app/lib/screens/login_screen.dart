@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           Icon(
                             Icons.store,
-                            color: Theme.of(context).primaryColorLight,
+                            color: Theme.of(context).primaryColor,
                             size: 160,
                           ),
                           InputField(
@@ -94,9 +94,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: TextButton(
                                     style: TextButton.styleFrom(
                                       backgroundColor: snapshot.hasData
-                                          ? Theme.of(context).primaryColorLight
+                                          ? Theme.of(context).primaryColor
                                           : Theme.of(context)
-                                              .primaryColorLight
+                                              .primaryColor
                                               .withOpacity(0.3),
                                     ),
                                     child: const Text(
